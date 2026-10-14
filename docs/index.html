@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="en">
+<html lang="bn">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Inventory Manager</title>
-<meta name="description" content="Bangla-first inventory and POS app for Windows shops: sales, stock, customer dues, returns, barcode labels, reports and a phone barcode scanner. Works offline on Windows 7 to 11.">
+<title>ইনভেন্টরি ম্যানেজার</title>
+<meta name="description" content="দোকানের জন্য বাংলা ইনভেন্টরি ও POS অ্যাপ: বিক্রি, স্টক, বাকি খাতা, পণ্য ফেরত, বারকোড লেবেল, রিপোর্ট আর ফোনকে বারকোড স্ক্যানার বানানো। উইন্ডোজ ৭ থেকে ১১, ইন্টারনেট ছাড়াই চলে।">
 <link rel="icon" href="images/icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #f6f8f8;
@@ -33,11 +33,10 @@
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 72px; }
-body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 Inter, "Hind Siliguri", system-ui, -apple-system, "Segoe UI", sans-serif; }
-.bn { font-family: "Hind Siliguri", Inter, sans-serif; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.75 Inter, "Noto Sans Bengali", "Nirmala UI", Vrinda, system-ui, sans-serif; }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
-img { max-width: 100%; display: block; }
+img { max-width: 100%; height: auto; display: block; }
 .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
 
 /* top bar */
@@ -54,7 +53,7 @@ nav.links a:hover { background: var(--accent-soft); color: var(--accent-strong);
 .hero { padding: 64px 0 36px; }
 .hero .grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.2fr); gap: 44px; align-items: center; }
 .eyebrow { display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: .02em; color: var(--accent-strong); background: var(--accent-soft); padding: 4px 10px; border-radius: 999px; }
-h1 { overflow-wrap: anywhere; font-size: clamp(30px, 5vw, 48px); line-height: 1.1; margin: 16px 0 14px; letter-spacing: -.02em; }
+h1 { overflow-wrap: anywhere; font-size: clamp(30px, 5vw, 46px); line-height: 1.3; margin: 16px 0 14px; }
 .lead { font-size: 18px; color: var(--ink-2); margin: 0 0 26px; }
 .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 14px; }
 .btn { display: inline-flex; flex-direction: column; justify-content: center; padding: 11px 18px; border-radius: 11px; font-weight: 600; border: 1px solid var(--line); background: var(--surface); color: var(--ink); line-height: 1.25; }
@@ -68,9 +67,9 @@ h1 { overflow-wrap: anywhere; font-size: clamp(30px, 5vw, 48px); line-height: 1.
 /* sections */
 section { padding: 56px 0; }
 section.alt { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-h2 { font-size: clamp(26px, 3.4vw, 34px); margin: 0 0 10px; letter-spacing: -.01em; }
+h2 { font-size: clamp(25px, 3.4vw, 33px); line-height: 1.35; margin: 0 0 10px; }
 .sub { color: var(--ink-2); margin: 0 0 30px; max-width: 720px; }
-h3 { font-size: 18px; margin: 0 0 6px; }
+h3 { font-size: 18px; line-height: 1.45; margin: 0 0 6px; }
 
 .features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 .feature { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 18px 16px; }
@@ -143,14 +142,14 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: 
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#"><img src="images/icon.png" alt="">Inventory Manager</a>
-    <nav class="links" aria-label="Sections">
-      <a href="#features">Features</a>
-      <a href="#screens">Screens</a>
-      <a href="#guide">How to use</a>
-      <a href="#shortcuts">Shortcuts</a>
-      <a href="#download">Download</a>
-      <a href="#faq">FAQ</a>
+    <a class="brand" href="#"><img src="images/icon.png" alt="">ইনভেন্টরি ম্যানেজার</a>
+    <nav class="links" aria-label="অংশসমূহ">
+      <a href="#features">সুবিধা</a>
+      <a href="#screens">স্ক্রিন</a>
+      <a href="#guide">ব্যবহারবিধি</a>
+      <a href="#shortcuts">শর্টকাট</a>
+      <a href="#download">ডাউনলোড</a>
+      <a href="#faq">প্রশ্নোত্তর</a>
     </nav>
   </div>
 </header>
@@ -159,214 +158,214 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: 
 <section class="hero">
   <div class="wrap grid">
     <div>
-      <span class="eyebrow">Free · Windows 7, 8, 10, 11 · Works offline</span>
-      <h1>Run your shop's stock, sales and dues in one app</h1>
-      <p class="lead">A fast point-of-sale and inventory app for small shops in Bangladesh. It works fully in <span class="bn">বাংলা</span> (or English), uses your Android phone as a barcode scanner, and keeps a <span class="bn">বাকি খাতা</span> for every customer.</p>
+      <span class="eyebrow">ফ্রি · উইন্ডোজ ৭, ৮, ১০, ১১ · ইন্টারনেট ছাড়াই চলে</span>
+      <h1>দোকানের স্টক, বিক্রি আর বাকির হিসাব এক অ্যাপে</h1>
+      <p class="lead">বাংলাদেশের ছোট দোকানের জন্য দ্রুত POS ও ইনভেন্টরি অ্যাপ। পুরোটাই বাংলায় (চাইলে ইংরেজিতে), অ্যান্ড্রয়েড ফোনকেই বারকোড স্ক্যানার বানিয়ে নেয়, আর প্রতিটি কাস্টমারের জন্য রাখে আলাদা বাকি খাতা।</p>
       <div class="cta">
-        <a class="btn primary" href="https://github.com/smtir/inventorymanager/releases/latest/download/InventoryManager-Setup.exe">Download Setup<small>All Windows, including 7 · 119 MB</small></a>
-        <a class="btn" href="https://github.com/smtir/inventorymanager/releases/latest/download/InventoryManager.exe">Single-file app<small>Windows 8 / 10 / 11 · 9 MB</small></a>
+        <a class="btn primary" href="https://github.com/smtir/inventorymanager/releases/latest/download/InventoryManager-Setup.exe">সেটআপ ডাউনলোড করুন<small>সব উইন্ডোজে, ৭ সহ · ১১৯ MB</small></a>
+        <a class="btn" href="https://github.com/smtir/inventorymanager/releases/latest/download/InventoryManager.exe">এক ফাইলের অ্যাপ<small>উইন্ডোজ ৮ / ১০ / ১১ · ৯ MB</small></a>
       </div>
-      <p class="fine">No internet needed to install or use. Your data stays on your PC.</p>
+      <p class="fine">ইনস্টল বা ব্যবহারে ইন্টারনেট লাগে না। আপনার সব তথ্য থাকে আপনার কম্পিউটারেই।</p>
     </div>
-    <img class="shot" src="images/pos.png" alt="Point of sale screen in Bangla with four products in the cart, a customer picker, discount, payment method and a Checkout button" width="1280" height="800">
+    <img class="shot" src="images/pos.png" alt="বিক্রয় (POS) স্ক্রিন: কার্টে চারটি পণ্য, কাস্টমার, ডিসকাউন্ট, পেমেন্টের মাধ্যম ও বিক্রয় সম্পন্ন বোতাম" width="1280" height="800">
   </div>
 </section>
 
 <section id="features" class="alt">
   <div class="wrap">
-    <h2>Everything a small shop needs</h2>
-    <p class="sub">From the counter to the month-end report. Every screen is in Bangla with clear Bangla digits, and you can switch to English any time.</p>
+    <h2>দোকান চালাতে যা যা লাগে</h2>
+    <p class="sub">কাউন্টারে বিক্রি থেকে মাস শেষের হিসাব পর্যন্ত। প্রতিটি স্ক্রিন বাংলায়, পরিষ্কার বাংলা সংখ্যায়; চাইলে যেকোনো সময় ইংরেজিতে বদলানো যায়।</p>
     <div class="features">
-      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.6 12.2a1.5 1.5 0 0 0 1.5 1.2h8.6a1.5 1.5 0 0 0 1.5-1.2L21 7H6"/></svg></div><h3>Sales (POS)</h3><p>Scan or search items into a cart, see the profit before checkout, then print a receipt. Discounts, partial payment and Cash / bKash / Nagad / Card.</p></div>
-      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 21h16"/></svg></div><h3>Stock In</h3><p>Receive goods from a vendor at the purchase cost. The cost updates the product's purchase rate, so profit stays right.</p></div>
-      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17.5" cy="9" r="2.4"/><path d="M15.5 14.5A5 5 0 0 1 21 19"/></svg></div><h3>Customers &amp; dues <span class="bn">(বাকি খাতা)</span></h3><p>Sell on credit, take payments later, see each customer's full ledger with a running balance, and print a due slip.</p></div>
-      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg></div><h3>Returns <span class="bn">(ফেরত)</span></h3><p>Take back items from any invoice. Stock goes back, profit reverses, and the refund first clears the customer's due.</p></div>
-      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5"/><path d="M12 13v8"/></svg></div><h3>Products &amp; stock</h3><p>Categories, vendors, barcodes, purchase and sale price, low-stock alerts, stock adjustment for damage or loss, CSV export.</p></div>
-      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-7"/><path d="M22 20H2"/></svg></div><h3>Dashboard &amp; reports</h3><p>Sales, profit, expenses and net profit for today, yesterday, this month or any range, with charts. Print an A4 business report.</p></div>
-      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M10 6h4"/><path d="M11 18h2"/></svg></div><h3>Phone as barcode scanner</h3><p>Open a link on any Android phone on the same Wi-Fi and scan with its camera. No app to install. USB scanners work too.</p></div>
-      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5v14"/><path d="M7 5v14"/><path d="M11 5v14"/><path d="M14 5v14"/><path d="M18 5v14"/><path d="M20 5v14"/></svg></div><h3>Barcode labels</h3><p>Print price and barcode labels on A4 sheets (65, 40 or 24 per page) or a 38 × 25 mm label roll.</p></div>
-      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Warranty &amp; serials</h3><p>Record each unit's serial number when you sell it, then look any serial up later to see the invoice and warranty days left.</p></div>
-      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6.5 9v6"/><path d="M17.5 9v6"/></svg></div><h3>Expenses</h3><p>Rent, electricity, salaries, tea: record expenses by category and see the real net profit after them.</p></div>
-      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"/><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M9 12h6"/><path d="M9 16h4"/></svg></div><h3>Restock order list</h3><p>Everything at or below its reorder level, grouped by vendor with suggested quantities, ready to print and take to the market.</p></div>
-      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/></svg></div><h3>Google Sheet sync</h3><p>A live copy of products, sales, dues and daily totals in your own Google Sheet, which you can open on any phone.</p></div>
-      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div><h3>App lock (PIN)</h3><p>A full-screen lock: nothing is visible until the PIN is entered. Locks on start, on request, and after 10 idle minutes.</p></div>
-      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/></svg></div><h3>Automatic backup</h3><p>A backup every day when you close the app (30 days kept), optionally copied to a USB drive or OneDrive folder.</p></div>
-      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"/></svg></div><h3>Keyboard shortcuts</h3><p>Every common action has a key, and you can change any of them in Settings.</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.6 12.2a1.5 1.5 0 0 0 1.5 1.2h8.6a1.5 1.5 0 0 0 1.5-1.2L21 7H6"/></svg></div><h3>বিক্রয় (POS)</h3><p>স্ক্যান বা খুঁজে পণ্য কার্টে নিন, বিক্রির আগেই লাভ দেখুন, তারপর রসিদ ছাপুন। ডিসকাউন্ট, আংশিক পেমেন্ট আর ক্যাশ / বিকাশ / নগদ / কার্ড।</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 21h16"/></svg></div><h3>স্টক ইন</h3><p>সরবরাহকারীর কাছ থেকে মাল এলে ক্রয়মূল্যসহ তুলে রাখুন। নতুন দাম পণ্যের ক্রয়মূল্যে বসে যায়, তাই লাভের হিসাব ঠিক থাকে।</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17.5" cy="9" r="2.4"/><path d="M15.5 14.5A5 5 0 0 1 21 19"/></svg></div><h3>কাস্টমার ও বাকি খাতা</h3><p>বাকিতে বিক্রি করুন, পরে টাকা জমা নিন। প্রতিটি কাস্টমারের পুরো খাতা চলতি বাকিসহ দেখুন, বাকির রসিদ ছাপুন।</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg></div><h3>পণ্য ফেরত</h3><p>যেকোনো ইনভয়েস থেকে পণ্য ফেরত নিন। স্টক ফিরে আসে, লাভ উল্টে যায়, আর ফেরতের টাকা আগে কাস্টমারের বাকি থেকে কাটে।</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5"/><path d="M12 13v8"/></svg></div><h3>পণ্য ও স্টক</h3><p>ক্যাটাগরি, সরবরাহকারী, বারকোড, ক্রয় ও বিক্রয়মূল্য, কম স্টকের সতর্কতা, নষ্ট বা হারানো মালের স্টক সমন্বয়, CSV এক্সপোর্ট।</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-7"/><path d="M22 20H2"/></svg></div><h3>ড্যাশবোর্ড ও রিপোর্ট</h3><p>আজ, গতকাল, এই মাস বা যেকোনো সময়ের বিক্রি, লাভ, খরচ ও নিট লাভ, চার্টসহ। A4 কাগজে ব্যবসার রিপোর্ট ছাপুন।</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M10 6h4"/><path d="M11 18h2"/></svg></div><h3>ফোনই বারকোড স্ক্যানার</h3><p>একই ওয়াই-ফাইয়ে থাকা যেকোনো অ্যান্ড্রয়েড ফোনে একটি লিংক খুলে ক্যামেরা দিয়ে স্ক্যান করুন। কোনো অ্যাপ ইনস্টল লাগে না। USB স্ক্যানারও চলে।</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5v14"/><path d="M7 5v14"/><path d="M11 5v14"/><path d="M14 5v14"/><path d="M18 5v14"/><path d="M20 5v14"/></svg></div><h3>বারকোড লেবেল</h3><p>A4 শিটে (প্রতি পাতায় ৬৫, ৪০ বা ২৪টি) অথবা ৩৮ × ২৫ মিমি লেবেল রোলে দাম ও বারকোডসহ লেবেল ছাপুন।</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>ওয়ারেন্টি ও সিরিয়াল</h3><p>বিক্রির সময় প্রতিটি ইউনিটের সিরিয়াল নম্বর রাখুন। পরে যেকোনো সিরিয়াল খুঁজলেই ইনভয়েস আর ওয়ারেন্টির বাকি দিন দেখা যায়।</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6.5 9v6"/><path d="M17.5 9v6"/></svg></div><h3>খরচের হিসাব</h3><p>ভাড়া, বিদ্যুৎ বিল, বেতন, চা-নাস্তা: ক্যাটাগরি ধরে খরচ লিখুন, আর খরচ বাদে আসল নিট লাভ দেখুন।</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"/><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M9 12h6"/><path d="M9 16h4"/></svg></div><h3>অর্ডার লিস্ট</h3><p>যেসব পণ্য পুনঃঅর্ডার সীমায় নেমেছে, সেগুলো সরবরাহকারী ধরে, কত আনতে হবে সেই পরামর্শসহ। ছেপে নিয়ে বাজারে যান।</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/></svg></div><h3>গুগল শিট সিঙ্ক</h3><p>পণ্য, বিক্রি, বাকি আর দৈনিক হিসাবের হালনাগাদ কপি আপনার নিজের গুগল শিটে, যা মোবাইল থেকেও দেখা যায়।</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div><h3>অ্যাপ লক (পিন)</h3><p>পুরো স্ক্রিন জুড়ে লক: পিন না দেওয়া পর্যন্ত কিছুই দেখা যায় না। অ্যাপ খুললে, চাইলে, আর ১০ মিনিট ব্যবহার না হলে নিজেই লক হয়।</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/></svg></div><h3>স্বয়ংক্রিয় ব্যাকআপ</h3><p>অ্যাপ বন্ধ করলেই প্রতিদিন একটি ব্যাকআপ (শেষ ৩০ দিনেরটা থাকে), চাইলে পেনড্রাইভ বা OneDrive ফোল্ডারেও কপি।</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"/></svg></div><h3>কীবোর্ড শর্টকাট</h3><p>প্রতিটি দরকারি কাজের জন্য একটি কী, আর সেটিংস থেকে যেকোনোটা নিজের মতো বদলে নেওয়া যায়।</p></div>
     </div>
   </div>
 </section>
 
 <section id="screens">
   <div class="wrap">
-    <h2>A look inside</h2>
-    <p class="sub">Real screens from the app in Bangla mode, with sample data. Click any picture to enlarge it.</p>
-    <div class="tabs" role="tablist" aria-label="Screens">
-      <button role="tab" aria-selected="true" data-p="p-dash">Dashboard</button>
-      <button role="tab" aria-selected="false" data-p="p-pos">Sales (POS)</button>
-      <button role="tab" aria-selected="false" data-p="p-hist">Sales history</button>
-      <button role="tab" aria-selected="false" data-p="p-prod">Products</button>
-      <button role="tab" aria-selected="false" data-p="p-cust">Customers &amp; dues</button>
-      <button role="tab" aria-selected="false" data-p="p-exp">Expenses</button>
-      <button role="tab" aria-selected="false" data-p="p-lock">App lock</button>
-      <button role="tab" aria-selected="false" data-p="p-set">Settings</button>
+    <h2>ভেতরে এক নজর</h2>
+    <p class="sub">নমুনা তথ্যসহ অ্যাপের আসল স্ক্রিন, বাংলা মোডে। যেকোনো ছবিতে ক্লিক করলে বড় হবে।</p>
+    <div class="tabs" role="tablist" aria-label="স্ক্রিন">
+      <button role="tab" aria-selected="true" data-p="p-dash">ড্যাশবোর্ড</button>
+      <button role="tab" aria-selected="false" data-p="p-pos">বিক্রয় (POS)</button>
+      <button role="tab" aria-selected="false" data-p="p-hist">বিক্রির ইতিহাস</button>
+      <button role="tab" aria-selected="false" data-p="p-prod">পণ্য</button>
+      <button role="tab" aria-selected="false" data-p="p-cust">কাস্টমার ও বাকি</button>
+      <button role="tab" aria-selected="false" data-p="p-exp">খরচ</button>
+      <button role="tab" aria-selected="false" data-p="p-lock">অ্যাপ লক</button>
+      <button role="tab" aria-selected="false" data-p="p-set">সেটিংস</button>
     </div>
 
     <div class="panel on" id="p-dash" role="tabpanel">
-      <img class="shot" src="images/dashboard.png" alt="Dashboard with sales, profit, expenses and net profit cards, a sales chart and top-selling products" loading="lazy">
-      <div class="cap"><h3>Dashboard</h3><p>The whole business at a glance for any period.</p><ul><li>Total sales, profit, expenses and net profit, each compared with the previous period</li><li>Sales &amp; profit chart: hourly, daily or monthly</li><li>Top-selling products, current stock value and items that need restocking</li><li><b>Print report</b> makes an A4 report for the chosen dates</li></ul></div>
+      <img class="shot" src="images/dashboard.png" alt="ড্যাশবোর্ড: মোট বিক্রয়, লাভ, খরচ ও নিট লাভের কার্ড, বিক্রির চার্ট আর সর্বাধিক বিক্রিত পণ্য" loading="lazy">
+      <div class="cap"><h3>ড্যাশবোর্ড</h3><p>যেকোনো সময়ের পুরো ব্যবসার চিত্র এক পাতায়।</p><ul><li>মোট বিক্রয়, লাভ, খরচ ও নিট লাভ, আগের সময়ের সাথে তুলনাসহ</li><li>বিক্রি ও লাভের চার্ট: ঘণ্টা, দিন বা মাস ধরে</li><li>সর্বাধিক বিক্রিত পণ্য, বর্তমান স্টকের মূল্য আর যেসব পণ্য আনতে হবে</li><li><b>রিপোর্ট ছাপুন</b> দিয়ে বাছাই করা সময়ের A4 রিপোর্ট</li></ul></div>
     </div>
     <div class="panel" id="p-pos" role="tabpanel">
-      <img class="shot" src="images/pos.png" alt="Sales screen with a cart of four products" loading="lazy">
-      <div class="cap"><h3>Sales (POS)</h3><p>Built for speed at the counter.</p><ul><li>Scan with a USB scanner or your phone, or type a name or code and press Enter</li><li>Change quantity or price right in the cart</li><li>Pick a customer to sell on due, give a discount, choose the payment method</li><li>Checkout with <kbd>F12</kbd> and print a receipt</li></ul></div>
+      <img class="shot" src="images/pos.png" alt="বিক্রয় স্ক্রিন, কার্টে চারটি পণ্য" loading="lazy">
+      <div class="cap"><h3>বিক্রয় (POS)</h3><p>কাউন্টারে দ্রুত বিক্রির জন্য বানানো।</p><ul><li>USB স্ক্যানার বা ফোন দিয়ে স্ক্যান করুন, অথবা নাম বা কোড লিখে Enter চাপুন</li><li>কার্টেই পরিমাণ বা দাম বদলান</li><li>বাকিতে বিক্রির জন্য কাস্টমার বাছুন, ডিসকাউন্ট দিন, পেমেন্টের মাধ্যম বাছুন</li><li><kbd>F12</kbd> চেপে বিক্রয় সম্পন্ন করুন, রসিদ ছাপুন</li></ul></div>
     </div>
     <div class="panel" id="p-hist" role="tabpanel">
-      <img class="shot" src="images/history.png" alt="Sales history list with sales and a return, and buttons for returns, reprint and warranty lookup" loading="lazy">
-      <div class="cap"><h3>Sales history</h3><p>Every invoice, return and its profit, filtered by date or searched by product, invoice or note.</p><ul><li><b>Return items</b> from any sale</li><li>Reprint a receipt</li><li>Look up a serial number's warranty</li><li>Undo a mistake, or export to CSV</li></ul></div>
+      <img class="shot" src="images/history.png" alt="বিক্রির ইতিহাস: বিক্রি ও একটি ফেরতের তালিকা, পণ্য ফেরত, রসিদ আবার প্রিন্ট ও ওয়ারেন্টি খোঁজের বোতাম" loading="lazy">
+      <div class="cap"><h3>বিক্রির ইতিহাস</h3><p>প্রতিটি ইনভয়েস, ফেরত আর তার লাভ; তারিখ দিয়ে ছাঁকুন, অথবা পণ্য, ইনভয়েস বা নোট দিয়ে খুঁজুন।</p><ul><li>যেকোনো বিক্রি থেকে <b>পণ্য ফেরত</b></li><li><b>রসিদ আবার প্রিন্ট</b></li><li>সিরিয়াল নম্বরের <b>ওয়ারেন্টি খোঁজ</b></li><li>ভুল হলে <b>নির্বাচিতটি বাতিল</b>, অথবা <b>CSV এক্সপোর্ট</b></li></ul></div>
     </div>
     <div class="panel" id="p-prod" role="tabpanel">
-      <img class="shot" src="images/products.png" alt="Products list with purchase price, sale price, profit per unit and stock" loading="lazy">
-      <div class="cap"><h3>Products</h3><p>Your full catalogue with live stock.</p><ul><li>Purchase price, sale price and profit per unit</li><li>Low-stock items highlighted</li><li><b>Adjust stock</b> for damage, loss or counting mistakes (kept in history)</li><li><b>Print labels</b> and <b>Order list</b> buttons</li></ul></div>
+      <img class="shot" src="images/products.png" alt="পণ্যের তালিকা: ক্রয়মূল্য, বিক্রয়মূল্য, প্রতি ইউনিটে লাভ ও স্টক" loading="lazy">
+      <div class="cap"><h3>পণ্য</h3><p>সব পণ্য, হালনাগাদ স্টকসহ।</p><ul><li>ক্রয়মূল্য, বিক্রয়মূল্য আর প্রতি ইউনিটে লাভ</li><li>কম স্টকের পণ্য আলাদা রঙে</li><li>নষ্ট, হারানো বা গোনায় ভুলের জন্য <b>স্টক সমন্বয়</b> (ইতিহাসে লেখা থাকে)</li><li><b>লেবেল ছাপুন</b> ও <b>অর্ডার লিস্ট</b> বোতাম</li></ul></div>
     </div>
     <div class="panel" id="p-cust" role="tabpanel">
-      <img class="shot" src="images/customers.png" alt="Customers list with phone numbers and due amounts" loading="lazy">
-      <div class="cap"><h3>Customers &amp; dues</h3><p>A digital <span class="bn">বাকি খাতা</span>.</p><ul><li>Every customer's current due, in red when they owe</li><li><b>Receive payment</b> in cash, bKash, Nagad or card</li><li><b>Ledger</b> shows every sale, payment and return with the running balance</li><li>Print a due slip to hand to the customer</li></ul></div>
+      <img class="shot" src="images/customers.png" alt="কাস্টমারের তালিকা: ফোন নম্বর ও বাকির পরিমাণ" loading="lazy">
+      <div class="cap"><h3>কাস্টমার ও বাকি</h3><p>ডিজিটাল বাকি খাতা।</p><ul><li>প্রতিটি কাস্টমারের বর্তমান বাকি, বাকি থাকলে লাল রঙে</li><li><b>টাকা জমা নিন</b>: ক্যাশ, বিকাশ, নগদ বা কার্ডে</li><li><b>খাতা</b>: প্রতিটি বিক্রি, জমা আর ফেরত, চলতি বাকিসহ</li><li>কাস্টমারকে দেওয়ার জন্য <b>বাকির রসিদ ছাপুন</b></li></ul></div>
     </div>
     <div class="panel" id="p-exp" role="tabpanel">
-      <img class="shot" src="images/expenses.png" alt="Expenses list for this month by category" loading="lazy">
-      <div class="cap"><h3>Expenses</h3><p>Record what the shop spends, so the dashboard shows the true net profit.</p><ul><li>Date, amount, category (remembered for next time) and a note</li><li>Filter by today, this month, last month or any range</li></ul></div>
+      <img class="shot" src="images/expenses.png" alt="এই মাসের খরচের তালিকা, ক্যাটাগরি ধরে" loading="lazy">
+      <div class="cap"><h3>খরচ</h3><p>দোকানের খরচ লিখে রাখুন, তাহলে ড্যাশবোর্ড আসল নিট লাভ দেখাবে।</p><ul><li>তারিখ, টাকার পরিমাণ, ক্যাটাগরি (পরের বার মনে রাখে) আর নোট</li><li>আজ, এই মাস, গত মাস বা যেকোনো সময় ধরে দেখুন</li></ul></div>
     </div>
     <div class="panel" id="p-lock" role="tabpanel">
-      <img class="shot" src="images/lock.png" alt="Full-window lock screen with a clock, the shop name and a PIN box" loading="lazy">
-      <div class="cap"><h3>App lock</h3><p>When you step away, nothing on screen can be seen or touched.</p><ul><li>Covers the whole window, including menus</li><li>Locks when the app opens, with <kbd>Ctrl</kbd>+<kbd>L</kbd>, and after 10 idle minutes</li><li>Pauses for 30 seconds after 5 wrong PINs</li><li>Unlocking returns you to where you were</li></ul></div>
+      <img class="shot" src="images/lock.png" alt="পুরো উইন্ডো জুড়ে লক স্ক্রিন: ঘড়ি, দোকানের নাম আর পিনের ঘর" loading="lazy">
+      <div class="cap"><h3>অ্যাপ লক</h3><p>দোকান থেকে উঠে গেলেও স্ক্রিনের কিছুই কেউ দেখতে বা ছুঁতে পারবে না।</p><ul><li>মেনুসহ পুরো উইন্ডো ঢেকে যায়</li><li>অ্যাপ খুললে, <kbd>Ctrl</kbd>+<kbd>L</kbd> চাপলে, আর ১০ মিনিট ব্যবহার না হলে লক হয়</li><li>৫ বার ভুল পিন দিলে ৩০ সেকেন্ড অপেক্ষা</li><li>আনলক করলে আগের স্ক্রিনেই ফিরে যান</li></ul></div>
     </div>
     <div class="panel" id="p-set" role="tabpanel">
-      <img class="shot" src="images/settings-shortcuts.png" alt="Settings page showing the keyboard shortcuts card" loading="lazy">
-      <div class="cap"><h3>Settings</h3><p>Everything in one scrolling page.</p><ul><li>Language (Bangla / English) and business details</li><li>Receipt printer and paper size (58 mm, 80 mm or A4)</li><li>Phone scanner, Google Sheet sync, backup and restore</li><li>PIN lock and keyboard shortcuts</li></ul></div>
+      <img class="shot" src="images/settings-shortcuts.png" alt="সেটিংস পাতায় কীবোর্ড শর্টকাটের অংশ" loading="lazy">
+      <div class="cap"><h3>সেটিংস</h3><p>সব সেটিং এক পাতায়।</p><ul><li>ভাষা (বাংলা / ইংরেজি) আর ব্যবসার তথ্য</li><li>রসিদের প্রিন্টার আর কাগজের মাপ (৫৮ মিমি, ৮০ মিমি বা A4)</li><li>ফোন স্ক্যানার, গুগল শিট সিঙ্ক, ব্যাকআপ ও পুনরুদ্ধার</li><li>পিন লক আর কীবোর্ড শর্টকাট</li></ul></div>
     </div>
 
-    <h3 style="margin-top:44px">What it prints</h3>
-    <p class="sub" style="margin-bottom:18px">Receipts on 58 / 80 mm thermal printers or A4, plus labels, reports and order lists. Every print has a preview first.</p>
+    <h3 style="margin-top:44px">যা যা ছাপা যায়</h3>
+    <p class="sub" style="margin-bottom:18px">৫৮ / ৮০ মিমি থার্মাল প্রিন্টার বা A4 কাগজে রসিদ, সাথে লেবেল, রিপোর্ট আর অর্ডার লিস্ট। প্রতিটি প্রিন্টের আগে প্রিভিউ দেখা যায়।</p>
     <div class="prints">
-      <figure><img class="paper" src="images/print-receipt.png" alt="Return receipt on 80 mm paper" loading="lazy"><figcaption>Receipt (80 mm), here a return slip</figcaption></figure>
-      <figure><img class="paper" src="images/print-report.png" alt="A4 business report with sales, profit and expenses" loading="lazy"><figcaption>A4 business report</figcaption></figure>
-      <figure><img class="paper" src="images/print-labels.png" alt="A4 sheet of barcode price labels" loading="lazy"><figcaption>Barcode labels (A4, 65 per sheet)</figcaption></figure>
+      <figure><img class="paper" src="images/print-receipt.png" alt="৮০ মিমি কাগজে ফেরত রসিদ" loading="lazy"><figcaption>রসিদ (৮০ মিমি), এখানে একটি ফেরত রসিদ</figcaption></figure>
+      <figure><img class="paper" src="images/print-report.png" alt="বিক্রি, লাভ ও খরচসহ A4 ব্যবসার রিপোর্ট" loading="lazy"><figcaption>A4 ব্যবসার রিপোর্ট</figcaption></figure>
+      <figure><img class="paper" src="images/print-labels.png" alt="দাম ও বারকোডসহ লেবেলের A4 শিট" loading="lazy"><figcaption>বারকোড লেবেল (A4, প্রতি শিটে ৬৫টি)</figcaption></figure>
     </div>
   </div>
 </section>
 
 <section id="guide" class="alt">
   <div class="wrap">
-    <h2>How to use it</h2>
-    <p class="sub">Short step-by-step guides. Menu names are shown in English; in Bangla mode the same items appear in the same places.</p>
+    <h2>কীভাবে ব্যবহার করবেন</h2>
+    <p class="sub">ধাপে ধাপে ছোট নির্দেশিকা। মোটা অক্ষরের নামগুলো অ্যাপে ঠিক যেভাবে লেখা থাকে, সেভাবেই দেওয়া হলো।</p>
     <div class="guides">
 
-      <details class="guide" open><summary><span class="n">1</span>Install and first start</summary>
+      <details class="guide" open><summary><span class="n">১</span>ইনস্টল ও প্রথমবার চালু</summary>
         <ol>
-          <li>Download <b>InventoryManager-Setup.exe</b> and run it. Click <b>Yes</b> when Windows asks for permission.</li>
-          <li>On Windows 7 it first installs Microsoft .NET Framework 4.8 from inside the setup (5–10 minutes, then maybe one restart). Newer Windows skip this.</li>
-          <li>Open <b>Inventory Manager</b> from the desktop shortcut.</li>
-          <li>Go to <b>Settings</b> and fill in your shop name, address and phone. They appear on receipts.</li>
-          <li>Sample products are loaded so you can try things. Remove them from <b>Settings → Reset Data</b> when you're ready to start for real.</li>
+          <li><b>InventoryManager-Setup.exe</b> ডাউনলোড করে চালান। উইন্ডোজ অনুমতি চাইলে <b>Yes</b> চাপুন।</li>
+          <li>উইন্ডোজ ৭-এ সেটআপ প্রথমে নিজের ভেতর থেকেই Microsoft .NET Framework 4.8 ইনস্টল করে (৫–১০ মিনিট, এরপর হয়তো একবার রিস্টার্ট)। নতুন উইন্ডোজে এই ধাপ লাগে না।</li>
+          <li>ডেস্কটপের <b>Inventory Manager</b> শর্টকাট থেকে অ্যাপ খুলুন।</li>
+          <li><b>সেটিংস → ব্যবসার তথ্য</b>-এ দোকানের নাম, ঠিকানা ও ফোন দিন। এগুলো রসিদে ছাপা হয়।</li>
+          <li>চেষ্টা করে দেখার জন্য কিছু নমুনা পণ্য দেওয়া থাকে। আসল কাজ শুরুর আগে <b>সেটিংস → তথ্য রিসেট</b> থেকে মুছে ফেলুন।</li>
         </ol>
-        <p>Prefer no installer? On Windows 8, 10 or 11 just download <b>InventoryManager.exe</b> and double-click it. It's the whole app in one file.</p>
+        <p>ইনস্টল ছাড়াই চালাতে চান? উইন্ডোজ ৮, ১০ বা ১১-এ শুধু <b>InventoryManager.exe</b> ডাউনলোড করে ডাবল-ক্লিক করুন। পুরো অ্যাপটাই এই এক ফাইলে।</p>
       </details>
 
-      <details class="guide"><summary><span class="n">2</span>Add your products</summary>
+      <details class="guide"><summary><span class="n">২</span>পণ্য যোগ করুন</summary>
         <ol>
-          <li>Open <b>Products → + Add Product</b> (or press <kbd>Ctrl</kbd>+<kbd>N</kbd>).</li>
-          <li>Enter the name, sale price and purchase price. Scan the barcode into the Barcode box if it has one.</li>
-          <li>Pick a category and vendor, the opening quantity, and a reorder level for low-stock alerts.</li>
-          <li>For items with a warranty, set <b>Warranty (months)</b>; the app will then ask for serial numbers when you sell them.</li>
+          <li><b>পণ্য → + পণ্য যোগ করুন</b> খুলুন (অথবা <kbd>Ctrl</kbd>+<kbd>N</kbd>)।</li>
+          <li>নাম, বিক্রয়মূল্য ও ক্রয়মূল্য দিন। বারকোড থাকলে <b>বারকোড</b> ঘরে স্ক্যান করুন।</li>
+          <li>ক্যাটাগরি, সরবরাহকারী, শুরুর পরিমাণ আর কম স্টকের সতর্কতার জন্য <b>পুনঃঅর্ডার সীমা</b> দিন।</li>
+          <li>ওয়ারেন্টিওয়ালা পণ্যে <b>ওয়ারেন্টি (মাস)</b> দিন; তাহলে বিক্রির সময় অ্যাপ সিরিয়াল নম্বর চাইবে।</li>
         </ol>
-        <p>Tip: scanning a barcode the app doesn't know opens Add Product with the barcode already filled in.</p>
+        <p>টিপস: অ্যাপে নেই এমন বারকোড স্ক্যান করলে বারকোড বসানো অবস্থায় নতুন পণ্যের ফর্ম খুলে যায়।</p>
       </details>
 
-      <details class="guide"><summary><span class="n">3</span>Make a sale</summary>
+      <details class="guide"><summary><span class="n">৩</span>বিক্রি করুন</summary>
         <ol>
-          <li>Open <b>Sales</b>. Scan items, or type part of a name or code and press <kbd>Enter</kbd>. Scanning the same item again adds one more.</li>
-          <li>Change a quantity or price by clicking it in the cart.</li>
-          <li>Optional: choose a <b>Customer</b>, a <b>Discount</b> (<kbd>F9</kbd>) and the payment <b>Method</b> (Cash, bKash, Nagad, Card).</li>
-          <li>If the customer pays less than the total, enter the amount in <b>Paid now</b>. The rest goes to their due.</li>
-          <li>Press <b>Checkout</b> (<kbd>F12</kbd>). Stock goes down and the receipt prints if <b>Print receipt</b> is ticked.</li>
-        </ol>
-      </details>
-
-      <details class="guide"><summary><span class="n">4</span>Receive stock from a vendor</summary>
-        <ol>
-          <li>Open <b>Stock In</b> and choose the vendor (add vendors under <b>Vendors</b>).</li>
-          <li>Scan the items that arrived. The unit cost is filled in from the purchase price; change it if the price changed.</li>
-          <li>Press <b>Save Stock In</b> (<kbd>F12</kbd>). Stock goes up and the new cost becomes the product's purchase rate.</li>
-        </ol>
-        <p>For broken or missing items use <b>Products → Adjust stock</b> instead. It asks for a reason and keeps a record.</p>
-      </details>
-
-      <details class="guide"><summary><span class="n">5</span>Use your phone as the scanner</summary>
-        <ol>
-          <li>Connect the phone and the PC to the <b>same Wi-Fi</b>.</li>
-          <li>On the PC, open <b>Sales</b> or <b>Stock In</b> and click <b>Phone Scanner</b>. A QR code appears.</li>
-          <li>Scan the QR code with the phone's camera and open the link in <b>Chrome</b>.</li>
-          <li>Chrome warns "Your connection is not private". This is expected, because the PC uses its own certificate. Tap <b>Advanced → Proceed</b>.</li>
-          <li>Tap <b>Start Scanning</b> and allow the camera. Each scan lands in the PC's cart and the phone beeps.</li>
-        </ol>
-        <p>If it won't connect: allow Inventory Manager on <b>Private networks</b> when Windows Firewall asks, and make sure the phone isn't on mobile data.</p>
-      </details>
-
-      <details class="guide"><summary><span class="n">6</span>Sell on due and collect payments</summary>
-        <ol>
-          <li>In <b>Sales</b>, choose the customer (or click <b>+</b> to add one), enter what they pay now, and check out.</li>
-          <li>Later, open <b>Customers</b>, select the customer and click <b>Receive payment</b>.</li>
-          <li><b>Ledger</b> shows every sale, payment and return with the running balance, and <b>Print due slip</b> prints it for the customer.</li>
+          <li><b>বিক্রয়</b> খুলুন। পণ্য স্ক্যান করুন, অথবা নাম বা কোডের অংশ লিখে <kbd>Enter</kbd> চাপুন। একই পণ্য আবার স্ক্যান করলে একটি বাড়ে।</li>
+          <li>কার্টে ক্লিক করে পরিমাণ বা দাম বদলান।</li>
+          <li>চাইলে <b>কাস্টমার</b>, <b>ডিসকাউন্ট</b> (<kbd>F9</kbd>) আর পেমেন্টের <b>মাধ্যম</b> (ক্যাশ, বিকাশ, নগদ, কার্ড) বাছুন।</li>
+          <li>কাস্টমার পুরো টাকা না দিলে যতটা দিলেন সেটা <b>এখন দিলো</b> ঘরে লিখুন। বাকিটা তাঁর বাকি খাতায় যাবে।</li>
+          <li><b>বিক্রয় সম্পন্ন</b> চাপুন (<kbd>F12</kbd>)। স্টক কমে যায়, আর <b>রসিদ প্রিন্ট</b> টিক দেওয়া থাকলে রসিদ ছাপা হয়।</li>
         </ol>
       </details>
 
-      <details class="guide"><summary><span class="n">7</span>Take back a returned item</summary>
+      <details class="guide"><summary><span class="n">৪</span>সরবরাহকারীর মাল তুলুন (স্টক ইন)</summary>
         <ol>
-          <li>Open <b>Sales → History</b> and select a line of the original sale.</li>
-          <li>Click <b>Return items</b>, set how many of each item came back, and choose how the money goes back.</li>
-          <li>The app shows the refund. If the customer owes money, the refund reduces their due first and the rest is paid back.</li>
+          <li><b>স্টক ইন</b> খুলে সরবরাহকারী বাছুন (নতুন সরবরাহকারী যোগ করুন <b>সরবরাহকারী</b> মেনু থেকে)।</li>
+          <li>যে মাল এলো তা স্ক্যান করুন। একক ক্রয়মূল্য আগের ক্রয়মূল্য থেকে বসে; দাম বদলালে ঠিক করে দিন।</li>
+          <li><b>স্টক ইন সংরক্ষণ</b> চাপুন (<kbd>F12</kbd>)। স্টক বাড়ে, আর নতুন দামটাই পণ্যের ক্রয়মূল্য হয়।</li>
+        </ol>
+        <p>নষ্ট বা হারানো মালের জন্য বরং <b>পণ্য → স্টক সমন্বয়</b> ব্যবহার করুন। এটা কারণ জিজ্ঞেস করে আর হিসাব রাখে।</p>
+      </details>
+
+      <details class="guide"><summary><span class="n">৫</span>ফোনকে স্ক্যানার বানান</summary>
+        <ol>
+          <li>ফোন আর কম্পিউটার <b>একই ওয়াই-ফাইয়ে</b> যুক্ত করুন।</li>
+          <li>কম্পিউটারে <b>বিক্রয়</b> বা <b>স্টক ইন</b> খুলে <b>ফোন স্ক্যানার</b> চাপুন। একটি QR কোড আসবে।</li>
+          <li>ফোনের ক্যামেরা দিয়ে QR কোড স্ক্যান করে লিংকটি <b>Chrome</b>-এ খুলুন।</li>
+          <li>Chrome বলবে "Your connection is not private"। কম্পিউটার নিজের সার্টিফিকেট ব্যবহার করে বলে এটা স্বাভাবিক। <b>Advanced → Proceed</b> চাপুন।</li>
+          <li><b>স্ক্যান শুরু করুন</b> চেপে ক্যামেরার অনুমতি দিন। প্রতিটি স্ক্যান কম্পিউটারের কার্টে চলে যায়, ফোনে বিপ হয়।</li>
+        </ol>
+        <p>যুক্ত না হলে: প্রথমবার উইন্ডোজ ফায়ারওয়াল জিজ্ঞেস করলে <b>Private networks</b>-এ অনুমতি দিন, আর দেখুন ফোন মোবাইল ডেটায় নেই তো।</p>
+      </details>
+
+      <details class="guide"><summary><span class="n">৬</span>বাকিতে বিক্রি ও টাকা আদায়</summary>
+        <ol>
+          <li><b>বিক্রয়</b>-এ কাস্টমার বাছুন (নতুন হলে <b>+</b> চাপুন), এখন কত দিলেন তা লিখে বিক্রয় সম্পন্ন করুন।</li>
+          <li>পরে <b>কাস্টমার</b> খুলে কাস্টমার বাছাই করে <b>টাকা জমা নিন</b> চাপুন।</li>
+          <li><b>খাতা</b>-য় প্রতিটি বিক্রি, জমা আর ফেরত চলতি বাকিসহ দেখা যায়; <b>বাকির রসিদ ছাপুন</b> দিয়ে কাস্টমারকে দিন।</li>
         </ol>
       </details>
 
-      <details class="guide"><summary><span class="n">8</span>Print barcode labels</summary>
+      <details class="guide"><summary><span class="n">৭</span>পণ্য ফেরত নিন</summary>
         <ol>
-          <li>Open <b>Products</b>, select a product and click <b>Print labels</b>.</li>
-          <li>Type how many labels you need for each product.</li>
-          <li>Choose the label sheet (A4 with 65, 40 or 24 labels, or a 38 × 25 mm roll), then <b>Preview &amp; print</b>.</li>
+          <li><b>বিক্রয় → ইতিহাস</b> খুলে আসল বিক্রির একটি লাইন বাছুন।</li>
+          <li><b>পণ্য ফেরত</b> চাপুন, কোন পণ্যের কতটি ফেরত এলো দিন, আর টাকা ফেরতের মাধ্যম বাছুন।</li>
+          <li>অ্যাপ ফেরতের টাকা দেখায়। কাস্টমারের বাকি থাকলে আগে বাকি থেকে কাটে, বাকিটা নগদ ফেরত।</li>
         </ol>
       </details>
 
-      <details class="guide"><summary><span class="n">9</span>Reports, expenses and restocking</summary>
+      <details class="guide"><summary><span class="n">৮</span>বারকোড লেবেল ছাপুন</summary>
+        <ol>
+          <li><b>পণ্য</b> খুলে একটি পণ্য বাছুন, তারপর <b>লেবেল ছাপুন</b> চাপুন।</li>
+          <li>কোন পণ্যের কতগুলো লেবেল লাগবে লিখুন।</li>
+          <li><b>লেবেল শিট</b> বাছুন (A4-এ ৬৫, ৪০ বা ২৪টি, অথবা ৩৮ × ২৫ মিমি রোল), তারপর <b>প্রিভিউ ও প্রিন্ট</b>।</li>
+        </ol>
+      </details>
+
+      <details class="guide"><summary><span class="n">৯</span>রিপোর্ট, খরচ আর অর্ডার লিস্ট</summary>
         <ul>
-          <li>Record spending in <b>Expenses</b>. The dashboard then shows <b>Net profit</b>.</li>
-          <li>On the <b>Dashboard</b>, choose a period and click <b>Print report</b> for an A4 summary.</li>
-          <li><b>Products → Order list</b> lists everything running low, grouped by vendor with suggested quantities.</li>
+          <li>দোকানের খরচ <b>খরচ</b> মেনুতে লিখুন। ড্যাশবোর্ড তখন <b>নিট লাভ (খরচ বাদে)</b> দেখাবে।</li>
+          <li><b>ড্যাশবোর্ড</b>-এ সময় বাছাই করে <b>রিপোর্ট ছাপুন</b> চাপলে A4 সারসংক্ষেপ পাবেন।</li>
+          <li><b>পণ্য → অর্ডার লিস্ট</b>-এ যেসব পণ্য ফুরিয়ে আসছে, সরবরাহকারী ধরে, কত আনতে হবে তার পরামর্শসহ।</li>
         </ul>
       </details>
 
-      <details class="guide"><summary><span class="n">10</span>Lock the app with a PIN</summary>
+      <details class="guide"><summary><span class="n">১০</span>পিন দিয়ে অ্যাপ লক করুন</summary>
         <ol>
-          <li>Open <b>Settings → Security</b> and click <b>Set PIN</b> (at least 4 digits, entered twice).</li>
-          <li>Lock any time with <b>Lock app</b> at the bottom of the sidebar or <kbd>Ctrl</kbd>+<kbd>L</kbd>.</li>
-          <li>The app also opens locked and locks itself after 10 minutes without use.</li>
+          <li><b>সেটিংস → নিরাপত্তা (অ্যাপ লক)</b>-এ <b>পিন সেট করুন</b> চাপুন (অন্তত ৪ সংখ্যা, দুবার লিখতে হবে)।</li>
+          <li>যেকোনো সময় সাইডবারের নিচের <b>অ্যাপ লক করুন</b> বা <kbd>Ctrl</kbd>+<kbd>L</kbd> দিয়ে লক করুন।</li>
+          <li>অ্যাপ খুললেও লক থাকে, আর ১০ মিনিট ব্যবহার না হলে নিজেই লক হয়।</li>
         </ol>
-        <p><b>Don't forget the PIN.</b> There is no reset button.</p>
+        <p><b>পিন ভুলবেন না।</b> পিন রিসেট করার কোনো বোতাম নেই।</p>
       </details>
 
-      <details class="guide"><summary><span class="n">11</span>Copy your data to Google Sheets</summary>
+      <details class="guide"><summary><span class="n">১১</span>গুগল শিটে তথ্যের কপি রাখুন</summary>
         <ol>
-          <li>Create a new Google Sheet.</li>
-          <li>In <b>Settings → Google Sheet sync</b> click <b>Copy script</b>. In the Sheet open <b>Extensions → Apps Script</b>, replace everything with it, and <b>Save</b>.</li>
-          <li><b>Give permission once:</b> choose <b>authorize</b> in the function list, click <b>Run</b>, then <b>Review permissions → your account → Advanced → Go to (unsafe) → Allow</b>.</li>
-          <li><b>Deploy → New deployment → Web app</b>: Execute as <b>Me</b>, Who has access <b>Anyone</b>, then <b>Deploy</b>.</li>
-          <li>Paste the Web app link (ends with <code>/exec</code>) into the app and click <b>Test connection</b>.</li>
+          <li>একটি নতুন Google Sheet খুলুন।</li>
+          <li><b>সেটিংস → গুগল শিট সিঙ্ক</b>-এ <b>স্ক্রিপ্ট কপি করুন</b> চাপুন। শিটে <b>Extensions → Apps Script</b> খুলে আগের লেখা মুছে পেস্ট করুন, তারপর <b>Save</b>।</li>
+          <li><b>একবার অনুমতি দিন:</b> উপরের ফাংশন তালিকা থেকে <b>authorize</b> বেছে <b>Run</b> চাপুন, তারপর <b>Review permissions → আপনার অ্যাকাউন্ট → Advanced → Go to (unsafe) → Allow</b>।</li>
+          <li><b>Deploy → New deployment → Web app</b>: Execute as <b>Me</b>, Who has access <b>Anyone</b> দিয়ে <b>Deploy</b>।</li>
+          <li>Web app লিংকটি (শেষে <code>/exec</code>) অ্যাপের <b>ওয়েব অ্যাপ লিংক</b> ঘরে পেস্ট করে <b>সংযোগ পরীক্ষা</b> চাপুন।</li>
         </ol>
       </details>
 
-      <details class="guide"><summary><span class="n">12</span>Back up and restore</summary>
+      <details class="guide"><summary><span class="n">১২</span>ব্যাকআপ ও পুনরুদ্ধার</summary>
         <ul>
-          <li>A backup is made automatically once a day when you close the app (the last 30 are kept).</li>
-          <li>Set <b>Settings → Backup → Daily auto-backup also copies to</b> a USB drive or OneDrive folder for an off-PC copy.</li>
-          <li><b>Back Up Now</b> saves a copy anywhere; <b>Restore from Backup</b> brings one back (a safety copy is made first).</li>
+          <li>অ্যাপ বন্ধ করলেই দিনে একবার নিজে থেকে ব্যাকআপ হয় (শেষ ৩০টি থাকে)।</li>
+          <li><b>সেটিংস → ব্যাকআপ ও পুনরুদ্ধার → দৈনিক অটো-ব্যাকআপের আরেক কপি যাবে</b>-তে পেনড্রাইভ বা OneDrive ফোল্ডার দিলে কম্পিউটারের বাইরেও একটি কপি থাকে।</li>
+          <li><b>এখনই ব্যাকআপ নিন</b> দিয়ে যেকোনো জায়গায় কপি রাখুন; <b>ব্যাকআপ থেকে পুনরুদ্ধার</b> দিয়ে ফিরিয়ে আনুন (তার আগে একটি নিরাপত্তা কপি হয়ে যায়)।</li>
         </ul>
       </details>
 
@@ -377,21 +376,21 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: 
 <section id="shortcuts">
   <div class="wrap two">
     <div>
-      <h2>Keyboard shortcuts</h2>
-      <p class="sub">These are the defaults. Change any of them in <b>Settings → Keyboard shortcuts</b>: click a box and press the new keys.</p>
-      <p class="note">A shortcut has to be a function key, or use <kbd>Ctrl</kbd> or <kbd>Alt</kbd>, so it never gets in the way of typing. Always available: <kbd>Del</kbd> removes the selected line, <kbd>Enter</kbd> opens it.</p>
+      <h2>কীবোর্ড শর্টকাট</h2>
+      <p class="sub">এগুলো শুরুর সেটিং। <b>সেটিংস → কীবোর্ড শর্টকাট</b>-এ যেকোনোটা বদলানো যায়: ঘরে ক্লিক করে নতুন কী চাপুন।</p>
+      <p class="note">শর্টকাট হতে হবে ফাংশন কী, অথবা <kbd>Ctrl</kbd> বা <kbd>Alt</kbd>-সহ কোনো কী, যাতে লেখার সময় ঝামেলা না হয়। সবসময় চালু: <kbd>Del</kbd> নির্বাচিত লাইন মুছে দেয়, <kbd>Enter</kbd> দিয়ে খোলে।</p>
     </div>
     <div class="table-wrap"><table>
-      <thead><tr><th>Keys</th><th>Action</th></tr></thead>
+      <thead><tr><th>কী</th><th>কাজ</th></tr></thead>
       <tbody>
-        <tr><td><kbd>Ctrl</kbd>+<kbd>1</kbd> … <kbd>5</kbd></td><td>Open Dashboard, Products, Sales, Stock In, Customers</td></tr>
-        <tr><td><kbd>Ctrl</kbd>+<kbd>N</kbd></td><td>Add new product, customer, expense or vendor</td></tr>
-        <tr><td><kbd>Ctrl</kbd>+<kbd>F</kbd></td><td>Go to the search box</td></tr>
-        <tr><td><kbd>F5</kbd></td><td>Refresh the screen</td></tr>
-        <tr><td><kbd>Ctrl</kbd>+<kbd>L</kbd></td><td>Lock the app</td></tr>
-        <tr><td><kbd>F2</kbd></td><td>POS: go to the scan box</td></tr>
-        <tr><td><kbd>F9</kbd></td><td>POS: go to the discount box</td></tr>
-        <tr><td><kbd>F12</kbd></td><td>POS: checkout / save stock-in</td></tr>
+        <tr><td><kbd>Ctrl</kbd>+<kbd>1</kbd> … <kbd>5</kbd></td><td>ড্যাশবোর্ড, পণ্য, বিক্রয়, স্টক ইন, কাস্টমার খুলুন</td></tr>
+        <tr><td><kbd>Ctrl</kbd>+<kbd>N</kbd></td><td>নতুন পণ্য, কাস্টমার, খরচ বা সরবরাহকারী যোগ</td></tr>
+        <tr><td><kbd>Ctrl</kbd>+<kbd>F</kbd></td><td>খোঁজার ঘরে যান</td></tr>
+        <tr><td><kbd>F5</kbd></td><td>স্ক্রিন রিফ্রেশ</td></tr>
+        <tr><td><kbd>Ctrl</kbd>+<kbd>L</kbd></td><td>অ্যাপ লক করুন</td></tr>
+        <tr><td><kbd>F2</kbd></td><td>POS: স্ক্যানের ঘরে যান</td></tr>
+        <tr><td><kbd>F9</kbd></td><td>POS: ডিসকাউন্টের ঘরে যান</td></tr>
+        <tr><td><kbd>F12</kbd></td><td>POS: বিক্রয় সম্পন্ন / স্টক ইন সংরক্ষণ</td></tr>
       </tbody>
     </table></div>
   </div>
@@ -400,21 +399,21 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: 
 <section id="download" class="alt">
   <div class="wrap two">
     <div>
-      <h2>Download</h2>
-      <p class="sub">Two ways to get it. Neither needs an internet connection on the shop PC.</p>
+      <h2>ডাউনলোড</h2>
+      <p class="sub">দুইভাবে পাওয়া যায়। দোকানের কম্পিউটারে কোনোটাতেই ইন্টারনেট লাগে না।</p>
       <div class="cta">
-        <a class="btn primary" href="https://github.com/smtir/inventorymanager/releases/latest/download/InventoryManager-Setup.exe">InventoryManager-Setup.exe<small>Installer · all Windows incl. 7 · 119 MB</small></a>
-        <a class="btn" href="https://github.com/smtir/inventorymanager/releases/latest/download/InventoryManager.exe">InventoryManager.exe<small>Single file · Windows 8 / 10 / 11 · 9 MB</small></a>
+        <a class="btn primary" href="https://github.com/smtir/inventorymanager/releases/latest/download/InventoryManager-Setup.exe">InventoryManager-Setup.exe<small>ইনস্টলার · উইন্ডোজ ৭ সহ সব · ১১৯ MB</small></a>
+        <a class="btn" href="https://github.com/smtir/inventorymanager/releases/latest/download/InventoryManager.exe">InventoryManager.exe<small>এক ফাইল · উইন্ডোজ ৮ / ১০ / ১১ · ৯ MB</small></a>
       </div>
-      <p class="fine">All versions and release notes: <a href="https://github.com/smtir/inventorymanager/releases">Releases</a> · Source code: <a href="https://github.com/smtir/inventorymanager">GitHub</a></p>
+      <p class="fine">সব ভার্সন ও কী কী নতুন: <a href="https://github.com/smtir/inventorymanager/releases">রিলিজ</a> · সোর্স কোড: <a href="https://github.com/smtir/inventorymanager">GitHub</a></p>
     </div>
     <div class="table-wrap"><table>
-      <thead><tr><th></th><th>Setup</th><th>Single file</th></tr></thead>
+      <thead><tr><th></th><th>সেটআপ</th><th>এক ফাইল</th></tr></thead>
       <tbody>
-        <tr><td>Windows 7 SP1</td><td>Yes (installs .NET 4.8 itself)</td><td>Only if .NET 4.5+ is already installed</td></tr>
-        <tr><td>Windows 8, 8.1, 10, 11</td><td>Yes</td><td>Yes</td></tr>
-        <tr><td>Shortcuts and uninstall entry</td><td>Yes</td><td>No (just copy and run)</td></tr>
-        <tr><td>Size</td><td>119 MB</td><td>9 MB</td></tr>
+        <tr><td>উইন্ডোজ ৭ SP1</td><td>হ্যাঁ (.NET 4.8 নিজেই ইনস্টল করে)</td><td>শুধু .NET 4.5+ আগে থেকে থাকলে</td></tr>
+        <tr><td>উইন্ডোজ ৮, ৮.১, ১০, ১১</td><td>হ্যাঁ</td><td>হ্যাঁ</td></tr>
+        <tr><td>শর্টকাট ও আনইনস্টল</td><td>হ্যাঁ</td><td>না (কপি করে চালান)</td></tr>
+        <tr><td>সাইজ</td><td>১১৯ MB</td><td>৯ MB</td></tr>
       </tbody>
     </table></div>
   </div>
@@ -422,14 +421,14 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: 
 
 <section id="faq">
   <div class="wrap">
-    <h2>Questions</h2>
+    <h2>সাধারণ প্রশ্ন</h2>
     <div class="guides">
-      <details class="guide"><summary>Where is my data saved?</summary><p>On your own PC, in <code>%AppData%\InventoryManager\inventory.db</code>. Nothing is sent anywhere unless you turn on Google Sheet sync. Uninstalling or updating the app keeps your data.</p></details>
-      <details class="guide"><summary>Windows says "Windows protected your PC"</summary><p>The app isn't signed with a paid certificate, so SmartScreen may warn the first time. Click <b>More info → Run anyway</b>.</p></details>
-      <details class="guide"><summary>Do I need internet?</summary><p>No. Installing and everyday use work fully offline. Internet is only used for the optional Google Sheet sync, and it catches up automatically when the connection comes back.</p></details>
-      <details class="guide"><summary>Which printers work?</summary><p>Any printer installed in Windows: 58 mm and 80 mm thermal receipt printers, or a normal A4 printer. Choose it in <b>Settings → Receipt</b> and try <b>Test print</b>.</p></details>
-      <details class="guide"><summary>How do I update to a new version?</summary><p>Close the app and run the new setup (or replace the single exe). Your products, sales and settings stay as they are.</p></details>
-      <details class="guide"><summary>Can I use it in English?</summary><p>Yes. <b>Settings → Language</b> switches between Bangla and English; the app restarts in the new language.</p></details>
+      <details class="guide"><summary>আমার তথ্য কোথায় থাকে?</summary><p>আপনার নিজের কম্পিউটারে, <code>%AppData%\InventoryManager\inventory.db</code> ফাইলে। গুগল শিট সিঙ্ক চালু না করলে কোথাও কিছু পাঠানো হয় না। আনইনস্টল বা নতুন ভার্সন দিলেও তথ্য থেকে যায়।</p></details>
+      <details class="guide"><summary>উইন্ডোজ বলছে "Windows protected your PC"</summary><p>অ্যাপটি টাকা দিয়ে কেনা সার্টিফিকেটে সাইন করা নয়, তাই প্রথমবার উইন্ডোজ সতর্ক করতে পারে। <b>More info → Run anyway</b> চাপুন।</p></details>
+      <details class="guide"><summary>ইন্টারনেট লাগবে?</summary><p>না। ইনস্টল আর প্রতিদিনের কাজ পুরোপুরি ইন্টারনেট ছাড়াই চলে। শুধু ঐচ্ছিক গুগল শিট সিঙ্কে ইন্টারনেট লাগে, আর সংযোগ ফিরলে সে নিজেই বাকিটা পাঠিয়ে দেয়।</p></details>
+      <details class="guide"><summary>কোন প্রিন্টার চলবে?</summary><p>উইন্ডোজে ইনস্টল করা যেকোনো প্রিন্টার: ৫৮ ও ৮০ মিমি থার্মাল রসিদ প্রিন্টার, অথবা সাধারণ A4 প্রিন্টার। <b>সেটিংস → রসিদ</b>-এ প্রিন্টার বেছে <b>পরীক্ষামূলক প্রিন্ট</b> দিয়ে দেখুন।</p></details>
+      <details class="guide"><summary>নতুন ভার্সনে কীভাবে আপডেট করব?</summary><p>অ্যাপ বন্ধ করে নতুন সেটআপ চালান (অথবা এক-ফাইলের exe বদলে দিন)। আপনার পণ্য, বিক্রি আর সেটিংস যেমন ছিল তেমনই থাকবে।</p></details>
+      <details class="guide"><summary>ইংরেজিতে ব্যবহার করা যায়?</summary><p>হ্যাঁ। <b>সেটিংস → ভাষা</b> থেকে বাংলা আর ইংরেজির মধ্যে বদলানো যায়; অ্যাপ নতুন ভাষায় আবার চালু হয়।</p></details>
     </div>
   </div>
 </section>
@@ -437,12 +436,12 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: 
 
 <footer>
   <div class="wrap">
-    <span>Developed by <b>Tawhidul Islam</b>, Senior Backend Engineer · <a href="https://tawhid.playvai.com">tawhid.playvai.com</a> · <a href="mailto:smtir.dev@gmail.com">smtir.dev@gmail.com</a></span>
-    <span><a href="https://github.com/smtir/inventorymanager">Source on GitHub</a></span>
+    <span>তৈরি করেছেন <b>তাওহিদুল ইসলাম</b>, সিনিয়র ব্যাকএন্ড ইঞ্জিনিয়ার · <a href="https://tawhid.playvai.com">tawhid.playvai.com</a> · <a href="mailto:smtir.dev@gmail.com">smtir.dev@gmail.com</a></span>
+    <span><a href="https://github.com/smtir/inventorymanager">GitHub-এ সোর্স কোড</a></span>
   </div>
 </footer>
 
-<div id="lb" role="dialog" aria-modal="true" aria-label="Enlarged picture"><img alt=""></div>
+<div id="lb" role="dialog" aria-modal="true" aria-label="বড় ছবি"><img alt=""></div>
 
 <script>
 // screen tabs

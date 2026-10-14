@@ -2,7 +2,7 @@
 
 A desktop app for managing products and stock. It runs on Windows 7, 8, 8.1, 10 and 11.
 
-**Website & user guide:** https://smtir.github.io/inventorymanager/ · **Download:** [latest release](https://github.com/smtir/inventorymanager/releases/latest)
+**Download:** [latest release](https://github.com/smtir/inventorymanager/releases/latest) · The Bangla website and user guide are in [`docs/`](docs/).
 
 ## Features
 - **Dashboard**: a date filter (today, yesterday, this month, last month or a custom range) for sales, profit, number of sales and units sold, each compared with the previous period. It has a sales & profit chart (hourly for one day, daily for up to two months, monthly beyond that) and a top-selling products chart; hover over a chart to see exact values. Below are the current stock figures, the transactions in the selected period, and items that need restocking.
