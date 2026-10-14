@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inventory Manager</title>
+<meta name="description" content="Bangla-first inventory and POS app for Windows shops: sales, stock, customer dues, returns, barcode labels, reports and a phone barcode scanner. Works offline on Windows 7 to 11.">
+<link rel="icon" href="images/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f6f8f8;
+  --surface: #ffffff;
+  --ink: #0f172a;
+  --ink-2: #475569;
+  --ink-3: #64748b;
+  --line: #e2e8f0;
+  --accent: #0f766e;
+  --accent-ink: #ffffff;
+  --accent-soft: #e6f3f1;
+  --accent-strong: #115e59;
+  --shadow: 0 1px 2px rgba(15, 23, 42, .05), 0 8px 24px rgba(15, 23, 42, .06);
+  --radius: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b1514; --surface: #12201f; --ink: #e6f0ef; --ink-2: #a9bcba; --ink-3: #8aa09d;
+    --line: #22312f; --accent: #2bb5a6; --accent-ink: #062320; --accent-soft: #143331; --accent-strong: #5fd1c4;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 Inter, "Hind Siliguri", system-ui, -apple-system, "Segoe UI", sans-serif; }
+.bn { font-family: "Hind Siliguri", Inter, sans-serif; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+img { max-width: 100%; display: block; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+/* top bar */
+header.top { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--surface) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+header.top .wrap { display: flex; align-items: center; gap: 16px; height: 60px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--ink); white-space: nowrap; }
+.brand img { width: 30px; height: 30px; border-radius: 7px; }
+nav.links { display: flex; gap: 4px; margin-left: auto; overflow-x: auto; scrollbar-width: none; }
+nav.links::-webkit-scrollbar { display: none; }
+nav.links a { color: var(--ink-2); padding: 6px 10px; border-radius: 8px; font-size: 14.5px; white-space: nowrap; }
+nav.links a:hover { background: var(--accent-soft); color: var(--accent-strong); text-decoration: none; }
+
+/* hero */
+.hero { padding: 64px 0 36px; }
+.hero .grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.2fr); gap: 44px; align-items: center; }
+.eyebrow { display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: .02em; color: var(--accent-strong); background: var(--accent-soft); padding: 4px 10px; border-radius: 999px; }
+h1 { overflow-wrap: anywhere; font-size: clamp(30px, 5vw, 48px); line-height: 1.1; margin: 16px 0 14px; letter-spacing: -.02em; }
+.lead { font-size: 18px; color: var(--ink-2); margin: 0 0 26px; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 14px; }
+.btn { display: inline-flex; flex-direction: column; justify-content: center; padding: 11px 18px; border-radius: 11px; font-weight: 600; border: 1px solid var(--line); background: var(--surface); color: var(--ink); line-height: 1.25; }
+.btn small { font-weight: 500; font-size: 12.5px; color: var(--ink-3); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn.primary small { color: color-mix(in srgb, var(--accent-ink) 78%, transparent); }
+.btn:hover { text-decoration: none; filter: brightness(1.04); }
+.fine { font-size: 13.5px; color: var(--ink-3); margin: 0; }
+.shot { border-radius: 12px; border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--surface); cursor: zoom-in; }
+
+/* sections */
+section { padding: 56px 0; }
+section.alt { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+h2 { font-size: clamp(26px, 3.4vw, 34px); margin: 0 0 10px; letter-spacing: -.01em; }
+.sub { color: var(--ink-2); margin: 0 0 30px; max-width: 720px; }
+h3 { font-size: 18px; margin: 0 0 6px; }
+
+.features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.feature { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 18px 16px; }
+section.alt .feature { background: var(--bg); }
+.feature .ic { width: 34px; height: 34px; border-radius: 9px; background: var(--accent-soft); color: var(--accent-strong); display: grid; place-items: center; margin-bottom: 10px; }
+.feature .ic svg { width: 19px; height: 19px; }
+.feature p { margin: 0; color: var(--ink-2); font-size: 15px; }
+.feature .tag { font-size: 13px; color: var(--ink-3); }
+
+/* gallery */
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.tabs button { font: inherit; font-size: 14.5px; padding: 7px 13px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink-2); cursor: pointer; }
+.tabs button[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.panel { display: none; }
+.panel.on { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 26px; align-items: start; }
+.panel .cap h3 { font-size: 20px; }
+.panel .cap p { color: var(--ink-2); margin: 0 0 10px; }
+.panel .cap ul { margin: 0; padding-left: 18px; color: var(--ink-2); }
+.panel .cap li { margin: 4px 0; }
+
+.prints { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.prints figure { margin: 0; }
+.prints figcaption { font-size: 14px; color: var(--ink-3); margin-top: 8px; }
+.paper { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 10px; box-shadow: var(--shadow); cursor: zoom-in; }
+
+/* how-to */
+.guides { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+details.guide { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 0 18px; }
+details.guide summary { cursor: pointer; list-style: none; padding: 15px 0; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+details.guide summary::-webkit-details-marker { display: none; }
+details.guide summary .n { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--accent-soft); color: var(--accent-strong); font-size: 13px; display: grid; place-items: center; }
+details.guide summary::after { content: "+"; margin-left: auto; color: var(--ink-3); font-weight: 400; font-size: 20px; }
+details.guide[open] summary::after { content: "–"; }
+details.guide ol, details.guide ul { margin: 0 0 16px; padding-left: 22px; color: var(--ink-2); }
+details.guide li { margin: 5px 0; }
+details.guide p { color: var(--ink-2); margin: 0 0 14px; }
+kbd { font: 600 12.5px/1 Inter, monospace; padding: 3px 6px; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 6px; background: var(--bg); color: var(--ink); white-space: nowrap; }
+
+.table-wrap { overflow-x: auto; border-radius: var(--radius); }
+table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--ink-3); font-weight: 600; }
+tr:last-child td { border-bottom: 0; }
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 26px; align-items: start; }
+
+.note { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: 12px 16px; border-radius: 0 10px 10px 0; color: var(--ink); font-size: 15px; margin: 18px 0 0; }
+
+footer { padding: 34px 0 44px; color: var(--ink-3); font-size: 14.5px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; }
+
+/* lightbox */
+#lb { position: fixed; inset: 0; background: rgba(4, 12, 11, .86); display: none; align-items: center; justify-content: center; z-index: 50; padding: 20px; cursor: zoom-out; }
+#lb.on { display: flex; }
+#lb img { max-height: 92vh; max-width: 96vw; border-radius: 10px; background: #fff; }
+
+@media (max-width: 900px) {
+  .hero .grid, .panel.on, .two, .prints { grid-template-columns: minmax(0, 1fr); }
+  .features { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .guides { grid-template-columns: minmax(0, 1fr); }
+  .hero { padding-top: 40px; }
+}
+@media (max-width: 560px) {
+  .features { grid-template-columns: minmax(0, 1fr); }
+  nav.links { display: none; }
+  th, td { padding: 9px 10px; }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#"><img src="images/icon.png" alt="">Inventory Manager</a>
+    <nav class="links" aria-label="Sections">
+      <a href="#features">Features</a>
+      <a href="#screens">Screens</a>
+      <a href="#guide">How to use</a>
+      <a href="#shortcuts">Shortcuts</a>
+      <a href="#download">Download</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap grid">
+    <div>
+      <span class="eyebrow">Free · Windows 7, 8, 10, 11 · Works offline</span>
+      <h1>Run your shop's stock, sales and dues in one app</h1>
+      <p class="lead">A fast point-of-sale and inventory app for small shops in Bangladesh. It works fully in <span class="bn">বাংলা</span> (or English), uses your Android phone as a barcode scanner, and keeps a <span class="bn">বাকি খাতা</span> for every customer.</p>
+      <div class="cta">
+        <a class="btn primary" href="https://github.com/__REPO__/releases/latest/download/InventoryManager-Setup.exe">Download Setup<small>All Windows, including 7 · 119 MB</small></a>
+        <a class="btn" href="https://github.com/__REPO__/releases/latest/download/InventoryManager.exe">Single-file app<small>Windows 8 / 10 / 11 · 9 MB</small></a>
+      </div>
+      <p class="fine">No internet needed to install or use. Your data stays on your PC.</p>
+    </div>
+    <img class="shot" src="images/pos.png" alt="Point of sale screen in Bangla with four products in the cart, a customer picker, discount, payment method and a Checkout button" width="1280" height="800">
+  </div>
+</section>
+
+<section id="features" class="alt">
+  <div class="wrap">
+    <h2>Everything a small shop needs</h2>
+    <p class="sub">From the counter to the month-end report. Every screen is in Bangla with clear Bangla digits, and you can switch to English any time.</p>
+    <div class="features">
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.6 12.2a1.5 1.5 0 0 0 1.5 1.2h8.6a1.5 1.5 0 0 0 1.5-1.2L21 7H6"/></svg></div><h3>Sales (POS)</h3><p>Scan or search items into a cart, see the profit before checkout, then print a receipt. Discounts, partial payment and Cash / bKash / Nagad / Card.</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 21h16"/></svg></div><h3>Stock In</h3><p>Receive goods from a vendor at the purchase cost. The cost updates the product's purchase rate, so profit stays right.</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17.5" cy="9" r="2.4"/><path d="M15.5 14.5A5 5 0 0 1 21 19"/></svg></div><h3>Customers &amp; dues <span class="bn">(বাকি খাতা)</span></h3><p>Sell on credit, take payments later, see each customer's full ledger with a running balance, and print a due slip.</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg></div><h3>Returns <span class="bn">(ফেরত)</span></h3><p>Take back items from any invoice. Stock goes back, profit reverses, and the refund first clears the customer's due.</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5"/><path d="M12 13v8"/></svg></div><h3>Products &amp; stock</h3><p>Categories, vendors, barcodes, purchase and sale price, low-stock alerts, stock adjustment for damage or loss, CSV export.</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-7"/><path d="M22 20H2"/></svg></div><h3>Dashboard &amp; reports</h3><p>Sales, profit, expenses and net profit for today, yesterday, this month or any range, with charts. Print an A4 business report.</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M10 6h4"/><path d="M11 18h2"/></svg></div><h3>Phone as barcode scanner</h3><p>Open a link on any Android phone on the same Wi-Fi and scan with its camera. No app to install. USB scanners work too.</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5v14"/><path d="M7 5v14"/><path d="M11 5v14"/><path d="M14 5v14"/><path d="M18 5v14"/><path d="M20 5v14"/></svg></div><h3>Barcode labels</h3><p>Print price and barcode labels on A4 sheets (65, 40 or 24 per page) or a 38 × 25 mm label roll.</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Warranty &amp; serials</h3><p>Record each unit's serial number when you sell it, then look any serial up later to see the invoice and warranty days left.</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6.5 9v6"/><path d="M17.5 9v6"/></svg></div><h3>Expenses</h3><p>Rent, electricity, salaries, tea: record expenses by category and see the real net profit after them.</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"/><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M9 12h6"/><path d="M9 16h4"/></svg></div><h3>Restock order list</h3><p>Everything at or below its reorder level, grouped by vendor with suggested quantities, ready to print and take to the market.</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/></svg></div><h3>Google Sheet sync</h3><p>A live copy of products, sales, dues and daily totals in your own Google Sheet, which you can open on any phone.</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div><h3>App lock (PIN)</h3><p>A full-screen lock: nothing is visible until the PIN is entered. Locks on start, on request, and after 10 idle minutes.</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/></svg></div><h3>Automatic backup</h3><p>A backup every day when you close the app (30 days kept), optionally copied to a USB drive or OneDrive folder.</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"/></svg></div><h3>Keyboard shortcuts</h3><p>Every common action has a key, and you can change any of them in Settings.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="screens">
+  <div class="wrap">
+    <h2>A look inside</h2>
+    <p class="sub">Real screens from the app in Bangla mode, with sample data. Click any picture to enlarge it.</p>
+    <div class="tabs" role="tablist" aria-label="Screens">
+      <button role="tab" aria-selected="true" data-p="p-dash">Dashboard</button>
+      <button role="tab" aria-selected="false" data-p="p-pos">Sales (POS)</button>
+      <button role="tab" aria-selected="false" data-p="p-hist">Sales history</button>
+      <button role="tab" aria-selected="false" data-p="p-prod">Products</button>
+      <button role="tab" aria-selected="false" data-p="p-cust">Customers &amp; dues</button>
+      <button role="tab" aria-selected="false" data-p="p-exp">Expenses</button>
+      <button role="tab" aria-selected="false" data-p="p-lock">App lock</button>
+      <button role="tab" aria-selected="false" data-p="p-set">Settings</button>
+    </div>
+
+    <div class="panel on" id="p-dash" role="tabpanel">
+      <img class="shot" src="images/dashboard.png" alt="Dashboard with sales, profit, expenses and net profit cards, a sales chart and top-selling products" loading="lazy">
+      <div class="cap"><h3>Dashboard</h3><p>The whole business at a glance for any period.</p><ul><li>Total sales, profit, expenses and net profit, each compared with the previous period</li><li>Sales &amp; profit chart: hourly, daily or monthly</li><li>Top-selling products, current stock value and items that need restocking</li><li><b>Print report</b> makes an A4 report for the chosen dates</li></ul></div>
+    </div>
+    <div class="panel" id="p-pos" role="tabpanel">
+      <img class="shot" src="images/pos.png" alt="Sales screen with a cart of four products" loading="lazy">
+      <div class="cap"><h3>Sales (POS)</h3><p>Built for speed at the counter.</p><ul><li>Scan with a USB scanner or your phone, or type a name or code and press Enter</li><li>Change quantity or price right in the cart</li><li>Pick a customer to sell on due, give a discount, choose the payment method</li><li>Checkout with <kbd>F12</kbd> and print a receipt</li></ul></div>
+    </div>
+    <div class="panel" id="p-hist" role="tabpanel">
+      <img class="shot" src="images/history.png" alt="Sales history list with sales and a return, and buttons for returns, reprint and warranty lookup" loading="lazy">
+      <div class="cap"><h3>Sales history</h3><p>Every invoice, return and its profit, filtered by date or searched by product, invoice or note.</p><ul><li><b>Return items</b> from any sale</li><li>Reprint a receipt</li><li>Look up a serial number's warranty</li><li>Undo a mistake, or export to CSV</li></ul></div>
+    </div>
+    <div class="panel" id="p-prod" role="tabpanel">
+      <img class="shot" src="images/products.png" alt="Products list with purchase price, sale price, profit per unit and stock" loading="lazy">
+      <div class="cap"><h3>Products</h3><p>Your full catalogue with live stock.</p><ul><li>Purchase price, sale price and profit per unit</li><li>Low-stock items highlighted</li><li><b>Adjust stock</b> for damage, loss or counting mistakes (kept in history)</li><li><b>Print labels</b> and <b>Order list</b> buttons</li></ul></div>
+    </div>
+    <div class="panel" id="p-cust" role="tabpanel">
+      <img class="shot" src="images/customers.png" alt="Customers list with phone numbers and due amounts" loading="lazy">
+      <div class="cap"><h3>Customers &amp; dues</h3><p>A digital <span class="bn">বাকি খাতা</span>.</p><ul><li>Every customer's current due, in red when they owe</li><li><b>Receive payment</b> in cash, bKash, Nagad or card</li><li><b>Ledger</b> shows every sale, payment and return with the running balance</li><li>Print a due slip to hand to the customer</li></ul></div>
+    </div>
+    <div class="panel" id="p-exp" role="tabpanel">
+      <img class="shot" src="images/expenses.png" alt="Expenses list for this month by category" loading="lazy">
+      <div class="cap"><h3>Expenses</h3><p>Record what the shop spends, so the dashboard shows the true net profit.</p><ul><li>Date, amount, category (remembered for next time) and a note</li><li>Filter by today, this month, last month or any range</li></ul></div>
+    </div>
+    <div class="panel" id="p-lock" role="tabpanel">
+      <img class="shot" src="images/lock.png" alt="Full-window lock screen with a clock, the shop name and a PIN box" loading="lazy">
+      <div class="cap"><h3>App lock</h3><p>When you step away, nothing on screen can be seen or touched.</p><ul><li>Covers the whole window, including menus</li><li>Locks when the app opens, with <kbd>Ctrl</kbd>+<kbd>L</kbd>, and after 10 idle minutes</li><li>Pauses for 30 seconds after 5 wrong PINs</li><li>Unlocking returns you to where you were</li></ul></div>
+    </div>
+    <div class="panel" id="p-set" role="tabpanel">
+      <img class="shot" src="images/settings-shortcuts.png" alt="Settings page showing the keyboard shortcuts card" loading="lazy">
+      <div class="cap"><h3>Settings</h3><p>Everything in one scrolling page.</p><ul><li>Language (Bangla / English) and business details</li><li>Receipt printer and paper size (58 mm, 80 mm or A4)</li><li>Phone scanner, Google Sheet sync, backup and restore</li><li>PIN lock and keyboard shortcuts</li></ul></div>
+    </div>
+
+    <h3 style="margin-top:44px">What it prints</h3>
+    <p class="sub" style="margin-bottom:18px">Receipts on 58 / 80 mm thermal printers or A4, plus labels, reports and order lists. Every print has a preview first.</p>
+    <div class="prints">
+      <figure><img class="paper" src="images/print-receipt.png" alt="Return receipt on 80 mm paper" loading="lazy"><figcaption>Receipt (80 mm), here a return slip</figcaption></figure>
+      <figure><img class="paper" src="images/print-report.png" alt="A4 business report with sales, profit and expenses" loading="lazy"><figcaption>A4 business report</figcaption></figure>
+      <figure><img class="paper" src="images/print-labels.png" alt="A4 sheet of barcode price labels" loading="lazy"><figcaption>Barcode labels (A4, 65 per sheet)</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="guide" class="alt">
+  <div class="wrap">
+    <h2>How to use it</h2>
+    <p class="sub">Short step-by-step guides. Menu names are shown in English; in Bangla mode the same items appear in the same places.</p>
+    <div class="guides">
+
+      <details class="guide" open><summary><span class="n">1</span>Install and first start</summary>
+        <ol>
+          <li>Download <b>InventoryManager-Setup.exe</b> and run it. Click <b>Yes</b> when Windows asks for permission.</li>
+          <li>On Windows 7 it first installs Microsoft .NET Framework 4.8 from inside the setup (5–10 minutes, then maybe one restart). Newer Windows skip this.</li>
+          <li>Open <b>Inventory Manager</b> from the desktop shortcut.</li>
+          <li>Go to <b>Settings</b> and fill in your shop name, address and phone. They appear on receipts.</li>
+          <li>Sample products are loaded so you can try things. Remove them from <b>Settings → Reset Data</b> when you're ready to start for real.</li>
+        </ol>
+        <p>Prefer no installer? On Windows 8, 10 or 11 just download <b>InventoryManager.exe</b> and double-click it. It's the whole app in one file.</p>
+      </details>
+
+      <details class="guide"><summary><span class="n">2</span>Add your products</summary>
+        <ol>
+          <li>Open <b>Products → + Add Product</b> (or press <kbd>Ctrl</kbd>+<kbd>N</kbd>).</li>
+          <li>Enter the name, sale price and purchase price. Scan the barcode into the Barcode box if it has one.</li>
+          <li>Pick a category and vendor, the opening quantity, and a reorder level for low-stock alerts.</li>
+          <li>For items with a warranty, set <b>Warranty (months)</b>; the app will then ask for serial numbers when you sell them.</li>
+        </ol>
+        <p>Tip: scanning a barcode the app doesn't know opens Add Product with the barcode already filled in.</p>
+      </details>
+
+      <details class="guide"><summary><span class="n">3</span>Make a sale</summary>
+        <ol>
+          <li>Open <b>Sales</b>. Scan items, or type part of a name or code and press <kbd>Enter</kbd>. Scanning the same item again adds one more.</li>
+          <li>Change a quantity or price by clicking it in the cart.</li>
+          <li>Optional: choose a <b>Customer</b>, a <b>Discount</b> (<kbd>F9</kbd>) and the payment <b>Method</b> (Cash, bKash, Nagad, Card).</li>
+          <li>If the customer pays less than the total, enter the amount in <b>Paid now</b>. The rest goes to their due.</li>
+          <li>Press <b>Checkout</b> (<kbd>F12</kbd>). Stock goes down and the receipt prints if <b>Print receipt</b> is ticked.</li>
+        </ol>
+      </details>
+
+      <details class="guide"><summary><span class="n">4</span>Receive stock from a vendor</summary>
+        <ol>
+          <li>Open <b>Stock In</b> and choose the vendor (add vendors under <b>Vendors</b>).</li>
+          <li>Scan the items that arrived. The unit cost is filled in from the purchase price; change it if the price changed.</li>
+          <li>Press <b>Save Stock In</b> (<kbd>F12</kbd>). Stock goes up and the new cost becomes the product's purchase rate.</li>
+        </ol>
+        <p>For broken or missing items use <b>Products → Adjust stock</b> instead. It asks for a reason and keeps a record.</p>
+      </details>
+
+      <details class="guide"><summary><span class="n">5</span>Use your phone as the scanner</summary>
+        <ol>
+          <li>Connect the phone and the PC to the <b>same Wi-Fi</b>.</li>
+          <li>On the PC, open <b>Sales</b> or <b>Stock In</b> and click <b>Phone Scanner</b>. A QR code appears.</li>
+          <li>Scan the QR code with the phone's camera and open the link in <b>Chrome</b>.</li>
+          <li>Chrome warns "Your connection is not private". This is expected, because the PC uses its own certificate. Tap <b>Advanced → Proceed</b>.</li>
+          <li>Tap <b>Start Scanning</b> and allow the camera. Each scan lands in the PC's cart and the phone beeps.</li>
+        </ol>
+        <p>If it won't connect: allow Inventory Manager on <b>Private networks</b> when Windows Firewall asks, and make sure the phone isn't on mobile data.</p>
+      </details>
+
+      <details class="guide"><summary><span class="n">6</span>Sell on due and collect payments</summary>
+        <ol>
+          <li>In <b>Sales</b>, choose the customer (or click <b>+</b> to add one), enter what they pay now, and check out.</li>
+          <li>Later, open <b>Customers</b>, select the customer and click <b>Receive payment</b>.</li>
+          <li><b>Ledger</b> shows every sale, payment and return with the running balance, and <b>Print due slip</b> prints it for the customer.</li>
+        </ol>
+      </details>
+
+      <details class="guide"><summary><span class="n">7</span>Take back a returned item</summary>
+        <ol>
+          <li>Open <b>Sales → History</b> and select a line of the original sale.</li>
+          <li>Click <b>Return items</b>, set how many of each item came back, and choose how the money goes back.</li>
+          <li>The app shows the refund. If the customer owes money, the refund reduces their due first and the rest is paid back.</li>
+        </ol>
+      </details>
+
+      <details class="guide"><summary><span class="n">8</span>Print barcode labels</summary>
+        <ol>
+          <li>Open <b>Products</b>, select a product and click <b>Print labels</b>.</li>
+          <li>Type how many labels you need for each product.</li>
+          <li>Choose the label sheet (A4 with 65, 40 or 24 labels, or a 38 × 25 mm roll), then <b>Preview &amp; print</b>.</li>
+        </ol>
+      </details>
+
+      <details class="guide"><summary><span class="n">9</span>Reports, expenses and restocking</summary>
+        <ul>
+          <li>Record spending in <b>Expenses</b>. The dashboard then shows <b>Net profit</b>.</li>
+          <li>On the <b>Dashboard</b>, choose a period and click <b>Print report</b> for an A4 summary.</li>
+          <li><b>Products → Order list</b> lists everything running low, grouped by vendor with suggested quantities.</li>
+        </ul>
+      </details>
+
+      <details class="guide"><summary><span class="n">10</span>Lock the app with a PIN</summary>
+        <ol>
+          <li>Open <b>Settings → Security</b> and click <b>Set PIN</b> (at least 4 digits, entered twice).</li>
+          <li>Lock any time with <b>Lock app</b> at the bottom of the sidebar or <kbd>Ctrl</kbd>+<kbd>L</kbd>.</li>
+          <li>The app also opens locked and locks itself after 10 minutes without use.</li>
+        </ol>
+        <p><b>Don't forget the PIN.</b> There is no reset button.</p>
+      </details>
+
+      <details class="guide"><summary><span class="n">11</span>Copy your data to Google Sheets</summary>
+        <ol>
+          <li>Create a new Google Sheet.</li>
+          <li>In <b>Settings → Google Sheet sync</b> click <b>Copy script</b>. In the Sheet open <b>Extensions → Apps Script</b>, replace everything with it, and <b>Save</b>.</li>
+          <li><b>Give permission once:</b> choose <b>authorize</b> in the function list, click <b>Run</b>, then <b>Review permissions → your account → Advanced → Go to (unsafe) → Allow</b>.</li>
+          <li><b>Deploy → New deployment → Web app</b>: Execute as <b>Me</b>, Who has access <b>Anyone</b>, then <b>Deploy</b>.</li>
+          <li>Paste the Web app link (ends with <code>/exec</code>) into the app and click <b>Test connection</b>.</li>
+        </ol>
+      </details>
+
+      <details class="guide"><summary><span class="n">12</span>Back up and restore</summary>
+        <ul>
+          <li>A backup is made automatically once a day when you close the app (the last 30 are kept).</li>
+          <li>Set <b>Settings → Backup → Daily auto-backup also copies to</b> a USB drive or OneDrive folder for an off-PC copy.</li>
+          <li><b>Back Up Now</b> saves a copy anywhere; <b>Restore from Backup</b> brings one back (a safety copy is made first).</li>
+        </ul>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<section id="shortcuts">
+  <div class="wrap two">
+    <div>
+      <h2>Keyboard shortcuts</h2>
+      <p class="sub">These are the defaults. Change any of them in <b>Settings → Keyboard shortcuts</b>: click a box and press the new keys.</p>
+      <p class="note">A shortcut has to be a function key, or use <kbd>Ctrl</kbd> or <kbd>Alt</kbd>, so it never gets in the way of typing. Always available: <kbd>Del</kbd> removes the selected line, <kbd>Enter</kbd> opens it.</p>
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Keys</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Ctrl</kbd>+<kbd>1</kbd> … <kbd>5</kbd></td><td>Open Dashboard, Products, Sales, Stock In, Customers</td></tr>
+        <tr><td><kbd>Ctrl</kbd>+<kbd>N</kbd></td><td>Add new product, customer, expense or vendor</td></tr>
+        <tr><td><kbd>Ctrl</kbd>+<kbd>F</kbd></td><td>Go to the search box</td></tr>
+        <tr><td><kbd>F5</kbd></td><td>Refresh the screen</td></tr>
+        <tr><td><kbd>Ctrl</kbd>+<kbd>L</kbd></td><td>Lock the app</td></tr>
+        <tr><td><kbd>F2</kbd></td><td>POS: go to the scan box</td></tr>
+        <tr><td><kbd>F9</kbd></td><td>POS: go to the discount box</td></tr>
+        <tr><td><kbd>F12</kbd></td><td>POS: checkout / save stock-in</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<section id="download" class="alt">
+  <div class="wrap two">
+    <div>
+      <h2>Download</h2>
+      <p class="sub">Two ways to get it. Neither needs an internet connection on the shop PC.</p>
+      <div class="cta">
+        <a class="btn primary" href="https://github.com/__REPO__/releases/latest/download/InventoryManager-Setup.exe">InventoryManager-Setup.exe<small>Installer · all Windows incl. 7 · 119 MB</small></a>
+        <a class="btn" href="https://github.com/__REPO__/releases/latest/download/InventoryManager.exe">InventoryManager.exe<small>Single file · Windows 8 / 10 / 11 · 9 MB</small></a>
+      </div>
+      <p class="fine">All versions and release notes: <a href="https://github.com/__REPO__/releases">Releases</a> · Source code: <a href="https://github.com/__REPO__">GitHub</a></p>
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th></th><th>Setup</th><th>Single file</th></tr></thead>
+      <tbody>
+        <tr><td>Windows 7 SP1</td><td>Yes (installs .NET 4.8 itself)</td><td>Only if .NET 4.5+ is already installed</td></tr>
+        <tr><td>Windows 8, 8.1, 10, 11</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td>Shortcuts and uninstall entry</td><td>Yes</td><td>No (just copy and run)</td></tr>
+        <tr><td>Size</td><td>119 MB</td><td>9 MB</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <h2>Questions</h2>
+    <div class="guides">
+      <details class="guide"><summary>Where is my data saved?</summary><p>On your own PC, in <code>%AppData%\InventoryManager\inventory.db</code>. Nothing is sent anywhere unless you turn on Google Sheet sync. Uninstalling or updating the app keeps your data.</p></details>
+      <details class="guide"><summary>Windows says "Windows protected your PC"</summary><p>The app isn't signed with a paid certificate, so SmartScreen may warn the first time. Click <b>More info → Run anyway</b>.</p></details>
+      <details class="guide"><summary>Do I need internet?</summary><p>No. Installing and everyday use work fully offline. Internet is only used for the optional Google Sheet sync, and it catches up automatically when the connection comes back.</p></details>
+      <details class="guide"><summary>Which printers work?</summary><p>Any printer installed in Windows: 58 mm and 80 mm thermal receipt printers, or a normal A4 printer. Choose it in <b>Settings → Receipt</b> and try <b>Test print</b>.</p></details>
+      <details class="guide"><summary>How do I update to a new version?</summary><p>Close the app and run the new setup (or replace the single exe). Your products, sales and settings stay as they are.</p></details>
+      <details class="guide"><summary>Can I use it in English?</summary><p>Yes. <b>Settings → Language</b> switches between Bangla and English; the app restarts in the new language.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Developed by <b>Tawhidul Islam</b>, Senior Backend Engineer · <a href="https://tawhid.playvai.com">tawhid.playvai.com</a> · <a href="mailto:smtir.dev@gmail.com">smtir.dev@gmail.com</a></span>
+    <span><a href="https://github.com/__REPO__">Source on GitHub</a></span>
+  </div>
+</footer>
+
+<div id="lb" role="dialog" aria-modal="true" aria-label="Enlarged picture"><img alt=""></div>
+
+<script>
+// screen tabs
+document.querySelectorAll('.tabs button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    document.querySelectorAll('.tabs button').forEach(function (x) { x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
+    document.querySelectorAll('.panel').forEach(function (p) { p.classList.toggle('on', p.id === b.dataset.p); });
+  });
+});
+// click-to-enlarge
+var lb = document.getElementById('lb'), lbImg = lb.querySelector('img');
+document.querySelectorAll('img.shot, img.paper').forEach(function (img) {
+  img.addEventListener('click', function () { lbImg.src = img.src; lbImg.alt = img.alt; lb.classList.add('on'); });
+});
+lb.addEventListener('click', function () { lb.classList.remove('on'); });
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape') lb.classList.remove('on'); });
+</script>
+</body>
+</html>

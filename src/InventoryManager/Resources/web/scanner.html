@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#ffffff">
+<title>Scanner - Inventory Manager</title>
+<style>
+  :root {
+    --bg: #f5f6f8; --panel: #ffffff; --line: #e5e7eb; --text: #111827; --muted: #6b7280;
+    --accent: #0f766e; --sale: #059669; --stockin: #2563eb; --danger: #dc2626; --warn: #d97706;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text);
+    font-family: "Hind Siliguri", "Noto Sans Bengali", -apple-system, "Segoe UI", Roboto, sans-serif; }
+  body { display: flex; flex-direction: column; max-width: 560px; margin: 0 auto; }
+  header { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: var(--panel); border-bottom: 1px solid var(--line); margin-bottom: 12px; }
+  header h1 { font-size: 16px; margin: 0; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--muted); flex: none; }
+  .dot.on { background: var(--sale); box-shadow: 0 0 8px var(--sale); }
+  .dot.off { background: var(--danger); }
+  #conn { font-size: 12px; color: var(--muted); }
+
+  .modes { display: flex; margin: 0 16px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 4px; }
+  .modes button { flex: 1; border: 0; background: transparent; color: var(--muted); font-size: 15px; font-weight: 600;
+    padding: 10px; border-radius: 8px; }
+  .modes button.active.sale { background: var(--sale); color: #fff; }
+  .modes button.active.stockin { background: var(--stockin); color: #fff; }
+
+  .camera { position: relative; margin: 12px 16px 0; border-radius: 14px; overflow: hidden; background: #000;
+    aspect-ratio: 4 / 3; }
+  video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .frame { position: absolute; left: 10%; right: 10%; top: 28%; bottom: 28%; border: 2px solid rgba(255,255,255,.85);
+    border-radius: 10px; box-shadow: 0 0 0 999px rgba(0,0,0,.35); pointer-events: none; transition: border-color .15s; }
+  .frame::after { content: ""; position: absolute; left: 6%; right: 6%; top: 50%; height: 2px; background: #ef4444;
+    box-shadow: 0 0 8px #ef4444; animation: laser 1.6s ease-in-out infinite; }
+  @keyframes laser { 0%,100% { transform: translateY(-34px); } 50% { transform: translateY(34px); } }
+  .frame.ok { border-color: var(--sale); } .frame.err { border-color: var(--danger); }
+  .overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 12px; background: rgba(15,23,42,.92); text-align: center; padding: 20px; }
+  .overlay p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.4; }
+  .big { border: 0; background: var(--sale); color: #fff; font-size: 17px; font-weight: 700; padding: 14px 26px; border-radius: 12px; }
+  .tools { position: absolute; right: 10px; bottom: 10px; display: flex; gap: 8px; }
+  .tools button { border: 0; width: 44px; height: 44px; border-radius: 50%; background: rgba(15,23,42,.75); color: #fff; font-size: 20px; }
+  .tools button.on { background: #facc15; color: #000; }
+
+  .result { margin: 12px 16px 0; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; border-left: 5px solid var(--line);
+    min-height: 86px; transition: border-color .15s, background .3s; }
+  .result.ok { border-left-color: var(--sale); } .result.err { border-left-color: var(--danger); background: #fef2f2; }
+  .result .name { font-size: 18px; font-weight: 700; }
+  .result .meta { margin-top: 4px; color: var(--muted); font-size: 14px; }
+  .result .msg { margin-top: 6px; font-size: 14px; }
+
+  .cart { display: flex; justify-content: space-between; align-items: baseline; margin: 12px 16px 0; padding: 12px 16px;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 14px; }
+  .cart .label { color: var(--muted); font-size: 13px; }
+  .cart .total { font-size: 22px; font-weight: 800; }
+
+  .actions { display: flex; gap: 8px; margin: 10px 16px 0; }
+  .actions button { flex: 1; border: 1px solid var(--line); background: var(--panel); color: var(--text); font-size: 15px;
+    font-weight: 600; padding: 11px; border-radius: 10px; }
+  .actions button.danger { color: var(--danger); border-color: #fecaca; }
+  .lines { margin: 10px 16px 0; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .lines:empty { display: none; }
+  .line { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+  .line:last-child { border-bottom: 0; }
+  .line .info { flex: 1; min-width: 0; }
+  .line .nm { font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .line .tt { font-size: 13px; color: var(--muted); }
+  .line .qty { min-width: 28px; text-align: center; font-weight: 800; font-size: 16px; }
+  .line button { width: 36px; height: 36px; border-radius: 9px; border: 1px solid var(--line); background: #f9fafb;
+    color: var(--text); font-size: 20px; line-height: 1; }
+  .line button.rm { color: var(--danger); }
+  form { display: flex; gap: 8px; margin: 12px 16px 20px; }
+  form input { flex: 1; min-width: 0; font-size: 16px; padding: 12px; border-radius: 10px; border: 1px solid var(--line);
+    background: var(--panel); color: var(--text); }
+  form button { border: 0; background: var(--accent); color: #fff; font-weight: 700; padding: 0 18px; border-radius: 10px; font-size: 15px; }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+<header>
+  <span id="dot" class="dot"></span>
+  <h1 id="title" data-t="Inventory Scanner">Inventory Scanner</h1>
+  <span id="conn" data-t="Connecting…">Connecting…</span>
+</header>
+
+<div class="modes">
+  <button id="modeSale" class="sale" data-t="Sale">Sale</button>
+  <button id="modeIn" class="stockin" data-t="Stock In">Stock In</button>
+</div>
+
+<div class="camera">
+  <video id="video" playsinline muted></video>
+  <div id="frame" class="frame"></div>
+  <div class="tools">
+    <button id="torch" class="hidden" title="Flashlight">&#128294;</button>
+    <button id="flip" class="hidden" title="Switch camera">&#8635;</button>
+  </div>
+  <div id="overlay" class="overlay">
+    <p id="overlayText" data-t="Point the camera at a barcode. Each scan is sent to the PC.">Point the camera at a barcode. Each scan is sent to the PC.</p>
+    <button id="start" class="big" data-t="Start Scanning">Start Scanning</button>
+  </div>
+</div>
+
+<div id="result" class="result">
+  <div class="name" id="rName" data-t="Ready">Ready</div>
+  <div class="meta" id="rMeta" data-t="Scan a product barcode">Scan a product barcode</div>
+  <div class="msg" id="rMsg"></div>
+</div>
+
+<div class="cart">
+  <div>
+    <div class="label" id="cartLabel" data-t="Cart">Cart</div>
+    <div id="cartCount">0 items</div>
+  </div>
+  <div class="total" id="cartTotal">0.00</div>
+</div>
+
+<div class="actions">
+  <button id="undo" type="button" data-t="↶ Undo last scan">↶ Undo last scan</button>
+  <button id="clear" type="button" class="danger" data-t="Clear all">Clear all</button>
+</div>
+
+<div id="lines" class="lines"></div>
+
+<form id="manual" autocomplete="off">
+  <input id="manualCode" inputmode="numeric" placeholder="Type barcode or product code" data-tp="Type barcode or product code">
+  <button type="submit" data-t="Add">Add</button>
+</form>
+
+<script src="/zxing.min.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  // ---- Pairing token: from the QR code URL, remembered for next time ----
+  var params = new URLSearchParams(location.search);
+  var token = params.get("t") || localStorage.getItem("imToken") || "";
+  if (params.get("t")) {
+    localStorage.setItem("imToken", token);
+    history.replaceState(null, "", "/");   // keep the token out of the address bar
+  }
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  // ---- Language: follows the PC (Settings > Language); remembered for next time ----
+  var BN = {
+    "Inventory Scanner": "ইনভেন্টরি স্ক্যানার", "Connecting…": "যুক্ত হচ্ছে…", "Sale": "বিক্রয়", "Stock In": "স্টক ইন",
+    "Point the camera at a barcode. Each scan is sent to the PC.": "ক্যামেরা বারকোডের দিকে ধরুন। প্রতিটি স্ক্যান পিসিতে চলে যাবে।",
+    "Start Scanning": "স্ক্যান শুরু করুন", "Ready": "প্রস্তুত", "Scan a product barcode": "পণ্যের বারকোড স্ক্যান করুন",
+    "Cart": "কার্ট", "Sale cart": "বিক্রয় কার্ট", "Stock-in list": "স্টক ইন তালিকা", "↶ Undo last scan": "↶ শেষ স্ক্যান বাতিল",
+    "Clear all": "সব মুছুন", "Type barcode or product code": "বারকোড বা পণ্যের কোড লিখুন", "Add": "যোগ",
+    "Not paired": "যুক্ত নয়", "Scan the QR code on the PC again.": "পিসির QR কোডটি আবার স্ক্যান করুন।",
+    "Connected": "যুক্ত", "Open POS on PC": "পিসিতে বিক্রয় স্ক্রিন খুলুন", "PC not reachable": "পিসি পাওয়া যাচ্ছে না",
+    "Done": "সম্পন্ন", "Not possible": "সম্ভব নয়", "Error": "সমস্যা", "Could not reach the PC.": "পিসিতে পৌঁছানো যায়নি।",
+    "Could not reach the PC. Check Wi-Fi.": "পিসিতে পৌঁছানো যায়নি। ওয়াই-ফাই দেখুন।",
+    "Remove all scanned items from the list on the PC?": "পিসির তালিকা থেকে সব স্ক্যান করা পণ্য সরাবেন?",
+    "Qty in cart:": "কার্টে পরিমাণ:", "item": "টি পণ্য", "items": "টি পণ্য",
+    "Camera is not available. Open this page using the https:// link from the PC (QR code).": "ক্যামেরা পাওয়া যাচ্ছে না। পিসির QR কোড থেকে https:// লিংক দিয়ে পেজটি খুলুন।",
+    "Camera permission was denied. Allow camera access for this site in Chrome settings, then tap Start.": "ক্যামেরার অনুমতি দেওয়া হয়নি। Chrome সেটিংসে এই সাইটের জন্য ক্যামেরার অনুমতি দিন, তারপর আবার চাপুন।",
+    "Could not start the camera:": "ক্যামেরা চালু করা যায়নি:", "OK": "ঠিক আছে"
+  };
+  var lang = localStorage.getItem("imLang") || "en";
+  function t(en) { return lang === "bn" && BN[en] ? BN[en] : en; }
+  function applyLang(newLang) {
+    if (newLang && newLang !== lang) { lang = newLang; localStorage.setItem("imLang", lang); }
+    document.documentElement.lang = lang;
+    [].forEach.call(document.querySelectorAll("[data-t]"), function (el) {
+      if (!el.dataset.keep) el.textContent = t(el.getAttribute("data-t"));
+    });
+    [].forEach.call(document.querySelectorAll("[data-tp]"), function (el) { el.placeholder = t(el.getAttribute("data-tp")); });
+  }
+  applyLang(lang);
+  var video = $("video"), frame = $("frame");
+  var mode = "sale", busy = false, lastCode = "", lastTime = 0, stream = null, track = null;
+  var facing = "environment", detector = null, zxing = null, canvas = null, ctx = null;
+
+  // ---- API ----
+  function api(path, body) {
+    return fetch("/api/" + path + "?t=" + encodeURIComponent(token), {
+      method: body ? "POST" : "GET",
+      headers: body ? { "Content-Type": "application/json" } : {},
+      body: body ? JSON.stringify(body) : undefined,
+      cache: "no-store"
+    }).then(function (r) {
+      return r.json().then(function (j) { j._status = r.status; return j; });
+    });
+  }
+
+  function applyStatus(s) {
+    if (s._status === 401) {
+      if (s.lang) applyLang(s.lang);
+      setConn(false, t("Not paired"));
+      showResult(false, t("Not paired"), "", s.message || t("Scan the QR code on the PC again."));
+      return;
+    }
+    if (s.lang && s.lang !== lang) applyLang(s.lang);
+    setConn(true, t(s.posOpen ? "Connected" : "Open POS on PC"));
+    $("title").textContent = s.business || "Inventory Scanner";
+    setMode(s.mode, false);
+    $("cartCount").textContent = (s.cartCountText || s.cartCount) + (lang === "bn" ? t("items") : (s.cartCount === 1 ? " item" : " items"));
+    $("cartTotal").textContent = s.cartTotal;
+    $("cartLabel").textContent = t(s.mode === "sale" ? "Sale cart" : "Stock-in list");
+    renderLines(s.lines || []);
+  }
+
+  // ---- Scanned items: change quantity, remove one, or clear all ----
+  var lastLinesJson = null;
+  function renderLines(lines) {
+    // The status poll runs every 2 s; only rebuild when something changed so taps are not lost.
+    var json = JSON.stringify(lines);
+    if (json === lastLinesJson) return;
+    lastLinesJson = json;
+    var box = $("lines");
+    box.innerHTML = "";
+    lines.slice().reverse().forEach(function (l) {      // newest first
+      var row = document.createElement("div");
+      row.className = "line";
+      row.innerHTML = '<div class="info"><div class="nm"></div><div class="tt"></div></div>' +
+        '<button class="dec" aria-label="Less">&minus;</button><span class="qty"></span>' +
+        '<button class="inc" aria-label="More">+</button><button class="rm" aria-label="Remove">&times;</button>';
+      row.querySelector(".nm").textContent = l.name;
+      row.querySelector(".tt").textContent = l.total;
+      row.querySelector(".qty").textContent = l.qty;
+      row.querySelector(".dec").onclick = function () { cart("dec", l.id); };
+      row.querySelector(".inc").onclick = function () { cart("inc", l.id); };
+      row.querySelector(".rm").onclick = function () { cart("remove", l.id); };
+      box.appendChild(row);
+    });
+    $("undo").disabled = $("clear").disabled = lines.length === 0;
+  }
+
+  function cart(action, id) {
+    api("cart", { action: action, id: id || 0 }).then(function (s) {
+      if (s._status === 401) { applyStatus(s); return; }
+      if (action === "clear" || action === "undo" || !s.ok) showResult(s.ok, s.productName || t(s.ok ? "Done" : "Not possible"), "", s.message);
+      lastCode = "";                       // allow scanning the same item again right away
+      applyStatus(s);
+    }).catch(function () { showResult(false, t("Error"), "", t("Could not reach the PC.")); });
+  }
+
+  $("undo").onclick = function () { cart("undo"); };
+  $("clear").onclick = function () {
+    if (confirm(t("Remove all scanned items from the list on the PC?"))) cart("clear");
+  };
+
+  function setConn(on, text) {
+    $("dot").className = "dot " + (on ? "on" : "off");
+    $("conn").textContent = text;
+  }
+
+  function poll() {
+    api("status").then(applyStatus).catch(function () { setConn(false, t("PC not reachable")); });
+  }
+  poll();
+  setInterval(function () { if (!document.hidden) poll(); }, 2000);
+
+  // ---- Mode ----
+  function setMode(m, send) {
+    mode = m === "stockin" ? "stockin" : "sale";
+    $("modeSale").classList.toggle("active", mode === "sale");
+    $("modeIn").classList.toggle("active", mode === "stockin");
+    if (send) api("mode", { mode: mode }).then(applyStatus).catch(function () {});
+  }
+  $("modeSale").onclick = function () { setMode("sale", true); };
+  $("modeIn").onclick = function () { setMode("stockin", true); };
+
+  // ---- Feedback ----
+  var audio = null;
+  function beep(ok) {
+    try {
+      audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+      var o = audio.createOscillator(), g = audio.createGain();
+      o.type = "square";
+      o.frequency.value = ok ? 1800 : 300;
+      g.gain.value = 0.08;
+      o.connect(g); g.connect(audio.destination);
+      o.start();
+      o.stop(audio.currentTime + (ok ? 0.09 : 0.35));
+    } catch (e) {}
+    if (navigator.vibrate) navigator.vibrate(ok ? 60 : [80, 60, 80]);
+  }
+
+  function showResult(ok, name, meta, msg) {
+    var r = $("result");
+    $("rName").dataset.keep = $("rMeta").dataset.keep = "1";
+    r.className = "result " + (ok ? "ok" : "err");
+    $("rName").textContent = name || (ok ? "OK" : "Error");
+    $("rMeta").textContent = meta || "";
+    $("rMsg").textContent = msg || "";
+    frame.className = "frame " + (ok ? "ok" : "err");
+    setTimeout(function () { frame.className = "frame"; }, 600);
+  }
+
+  // ---- Sending a code ----
+  function send(code) {
+    code = (code || "").trim();
+    if (!code || busy) return;
+    var now = Date.now();
+    if (code === lastCode && now - lastTime < 1500) return;   // ignore the same barcode seen twice in a row
+    lastCode = code; lastTime = now; busy = true;
+
+    api("scan", { code: code }).then(function (s) {
+      if (s._status === 401) { applyStatus(s); beep(false); return; }
+      var meta = [s.price, s.qty != null ? (t("Qty in cart:") + " " + s.qty) : ""].filter(Boolean).join("  ·  ");
+      showResult(s.ok, s.productName || code, meta, s.message);
+      beep(s.ok);
+      applyStatus(s);
+    }).catch(function () {
+      showResult(false, code, "", t("Could not reach the PC. Check Wi-Fi."));
+      beep(false);
+    }).then(function () { busy = false; });
+  }
+
+  $("manual").onsubmit = function (e) {
+    e.preventDefault();
+    var input = $("manualCode");
+    lastCode = "";               // allow re-adding the same code manually
+    send(input.value);
+    input.value = "";
+  };
+
+  // ---- Camera + decoding ----
+  var formats = ["ean_13", "ean_8", "upc_a", "upc_e", "code_128", "code_39", "code_93", "itf", "codabar", "qr_code"];
+
+  function setupDecoder() {
+    if ("BarcodeDetector" in window) {
+      return BarcodeDetector.getSupportedFormats().then(function (supported) {
+        var use = formats.filter(function (f) { return supported.indexOf(f) >= 0; });
+        if (use.length) detector = new BarcodeDetector({ formats: use });
+      }).catch(function () {});
+    }
+    return Promise.resolve();
+  }
+
+  function setupZxing() {
+    if (zxing || !window.ZXing) return;
+    var hints = new Map();
+    var F = ZXing.BarcodeFormat;
+    hints.set(ZXing.DecodeHintType.POSSIBLE_FORMATS, [F.EAN_13, F.EAN_8, F.UPC_A, F.UPC_E, F.CODE_128, F.CODE_39,
+      F.CODE_93, F.ITF, F.CODABAR, F.QR_CODE]);
+    hints.set(ZXing.DecodeHintType.TRY_HARDER, true);
+    zxing = new ZXing.MultiFormatReader();
+    zxing.setHints(hints);
+    canvas = document.createElement("canvas");
+    ctx = canvas.getContext("2d", { willReadFrequently: true });
+  }
+
+  function decodeFrame() {
+    if (!stream || video.readyState < 2) return Promise.resolve(null);
+    if (detector) {
+      return detector.detect(video).then(function (codes) {
+        return codes.length ? codes[0].rawValue : null;
+      }).catch(function () { return null; });
+    }
+    setupZxing();
+    if (!zxing) return Promise.resolve(null);
+    // Decode the central band of the frame (where the guide box is) at a modest resolution.
+    var vw = video.videoWidth, vh = video.videoHeight;
+    var sx = vw * 0.1, sy = vh * 0.25, sw = vw * 0.8, sh = vh * 0.5;
+    var scale = Math.min(1, 800 / sw);
+    canvas.width = Math.round(sw * scale);
+    canvas.height = Math.round(sh * scale);
+    ctx.drawImage(video, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
+    try {
+      var bitmap = new ZXing.BinaryBitmap(new ZXing.HybridBinarizer(new ZXing.HTMLCanvasElementLuminanceSource(canvas)));
+      return Promise.resolve(zxing.decode(bitmap).getText());
+    } catch (e) {
+      return Promise.resolve(null);
+    }
+  }
+
+  function loop() {
+    if (!stream) return;
+    decodeFrame().then(function (code) {
+      if (code) send(code);
+      setTimeout(function () { requestAnimationFrame(loop); }, detector ? 120 : 200);
+    });
+  }
+
+  function startCamera() {
+    if (!window.isSecureContext || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      $("overlayText").textContent = t("Camera is not available. Open this page using the https:// link from the PC (QR code).");
+      return;
+    }
+    // Unlock audio on this user tap so beeps work later.
+    try { audio = audio || new (window.AudioContext || window.webkitAudioContext)(); audio.resume(); } catch (e) {}
+
+    stopCamera();
+    navigator.mediaDevices.getUserMedia({
+      audio: false,
+      video: { facingMode: { ideal: facing }, width: { ideal: 1280 }, height: { ideal: 720 } }
+    }).then(function (s) {
+      stream = s;
+      track = s.getVideoTracks()[0];
+      video.srcObject = s;
+      return video.play();
+    }).then(setupDecoder).then(function () {
+      $("overlay").classList.add("hidden");
+      var caps = track && track.getCapabilities ? track.getCapabilities() : {};
+      $("torch").classList.toggle("hidden", !caps.torch);
+      return navigator.mediaDevices.enumerateDevices();
+    }).then(function (devices) {
+      var cams = devices.filter(function (d) { return d.kind === "videoinput"; });
+      $("flip").classList.toggle("hidden", cams.length < 2);
+      loop();
+    }).catch(function (err) {
+      $("overlay").classList.remove("hidden");
+      $("overlayText").textContent = (err && err.name === "NotAllowedError")
+        ? t("Camera permission was denied. Allow camera access for this site in Chrome settings, then tap Start.")
+        : t("Could not start the camera:") + " " + (err && err.message ? err.message : err);
+    });
+  }
+
+  function stopCamera() {
+    if (stream) stream.getTracks().forEach(function (t) { t.stop(); });
+    stream = null; track = null;
+  }
+
+  $("start").onclick = startCamera;
+  $("flip").onclick = function () { facing = facing === "environment" ? "user" : "environment"; startCamera(); };
+  $("torch").onclick = function () {
+    if (!track) return;
+    var on = !this.classList.contains("on");
+    var btn = this;
+    track.applyConstraints({ advanced: [{ torch: on }] }).then(function () { btn.classList.toggle("on", on); }).catch(function () {});
+  };
+
+  // Release the camera when the page is hidden (screen off / switched app); resume on return.
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) { stopCamera(); }
+    else if ($("overlay").classList.contains("hidden")) { startCamera(); }
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6B3E1C2A-4D5F-4A7B-9C1E-2F3A4B5C6D7E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>InventoryManager</RootNamespace>
+    <AssemblyName>InventoryManager</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <LangVersion>7.3</LangVersion>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Resources\app.ico</ApplicationIcon>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Web.Extensions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Bundle.cs" />
+    <Compile Include="Localization\L.cs" />
+    <Compile Include="Localization\Strings.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\StockTransaction.cs" />
+    <Compile Include="Models\CartLine.cs" />
+    <Compile Include="Models\Invoice.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Expense.cs" />
+    <Compile Include="Models\SoldSerial.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Vendor.cs" />
+    <Compile Include="Data\Database.cs" />
+    <Compile Include="Data\ProductRepository.cs" />
+    <Compile Include="Data\TransactionRepository.cs" />
+    <Compile Include="Data\AppSettings.cs" />
+    <Compile Include="Data\CategoryRepository.cs" />
+    <Compile Include="Data\VendorRepository.cs" />
+    <Compile Include="Data\CustomerRepository.cs" />
+    <Compile Include="Data\ExpenseRepository.cs" />
+    <Compile Include="Data\SerialRepository.cs" />
+    <Compile Include="UI\Theme.cs" />
+    <Compile Include="UI\FontManager.cs" />
+    <Compile Include="UI\Controls.cs" />
+    <Compile Include="UI\Msg.cs" />
+    <Compile Include="UI\MainForm.cs" />
+    <Compile Include="UI\DashboardView.cs" />
+    <Compile Include="UI\Charts.cs" />
+    <Compile Include="UI\DateRangeBar.cs" />
+    <Compile Include="UI\ProductsView.cs" />
+    <Compile Include="UI\ProductEditForm.cs" />
+    <Compile Include="UI\SalesView.cs" />
+    <Compile Include="UI\SettingsView.cs" />
+    <Compile Include="UI\PhoneScannerForm.cs" />
+    <Compile Include="UI\Session.cs" />
+    <Compile Include="UI\LockScreen.cs" />
+    <Compile Include="UI\Shortcuts.cs" />
+    <Compile Include="UI\PinDialog.cs" />
+    <Compile Include="UI\CustomersView.cs" />
+    <Compile Include="UI\ExpensesView.cs" />
+    <Compile Include="UI\ReturnForm.cs" />
+    <Compile Include="UI\SerialForms.cs" />
+    <Compile Include="UI\AdjustStockForm.cs" />
+    <Compile Include="UI\LabelPrintForm.cs" />
+    <Compile Include="UI\PurchaseOrderForm.cs" />
+    <Compile Include="UI\CategoriesForm.cs" />
+    <Compile Include="UI\VendorsView.cs" />
+    <Compile Include="Scanner\CertificateManager.cs" />
+    <Compile Include="Scanner\ScanServer.cs" />
+    <Compile Include="Scanner\ScanHub.cs" />
+    <Compile Include="Printing\ReceiptPrinter.cs" />
+    <Compile Include="Printing\ReportPrinter.cs" />
+    <Compile Include="Printing\Code128.cs" />
+    <Compile Include="Sync\HttpsClient.cs" />
+    <Compile Include="Sync\SheetSync.cs" />
+    <Compile Include="UI\AboutView.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="app.manifest" />
+    <Content Include="Resources\app.ico" />
+    <Content Include="Resources\Fonts\*.ttf">
+      <Link>Fonts\%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Fonts\IMSiliguri-README.txt">
+      <Link>Fonts\IMSiliguri-README.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Fonts\IMNumbers-LICENSE.txt">
+      <Link>Fonts\IMNumbers-LICENSE.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Fonts\OFL.txt">
+      <Link>Fonts\OFL.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Resources\sync\Code.gs">
+      <LogicalName>InventoryManager.sync.Code.gs</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\web\scanner.html">
+      <LogicalName>InventoryManager.web.scanner.html</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\web\zxing.min.js">
+      <LogicalName>InventoryManager.web.zxing.min.js</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" />
+    <PackageReference Include="Portable.BouncyCastle" Version="1.9.0" />
+    <PackageReference Include="QRCoder" Version="1.4.3" />
+  </ItemGroup>
+
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!--
+    Single-file exe: embed the referenced DLLs, the native SQLite engines and the fonts as "bundle/..."
+    resources. Bundle.cs unpacks them on first start, so InventoryManager.exe runs on its own.
+  -->
+  <PropertyGroup>
+    <SQLiteInteropDir>$(NuGetPackageRoot)stub.system.data.sqlite.core.netframework\1.0.118\build\net45\</SQLiteInteropDir>
+  </PropertyGroup>
+  <Target Name="EmbedBundle" BeforeTargets="SplitResourcesByCulture" DependsOnTargets="ResolveAssemblyReferences">
+    <Error Condition="!Exists('$(SQLiteInteropDir)x64\SQLite.Interop.dll')" Text="SQLite native engine not found in $(SQLiteInteropDir). Run a restore first." />
+    <ItemGroup>
+      <BundleDll Include="@(ReferenceCopyLocalPaths)" Condition="'%(ReferenceCopyLocalPaths.Extension)' == '.dll'" />
+      <BundleFont Include="Resources\Fonts\*.ttf" />
+      <EmbeddedResource Include="@(BundleDll)">
+        <LogicalName>bundle/%(BundleDll.Filename)%(BundleDll.Extension)</LogicalName>
+      </EmbeddedResource>
+      <EmbeddedResource Include="$(SQLiteInteropDir)x86\SQLite.Interop.dll">
+        <LogicalName>bundle/x86/SQLite.Interop.dll</LogicalName>
+      </EmbeddedResource>
+      <EmbeddedResource Include="$(SQLiteInteropDir)x64\SQLite.Interop.dll">
+        <LogicalName>bundle/x64/SQLite.Interop.dll</LogicalName>
+      </EmbeddedResource>
+      <EmbeddedResource Include="@(BundleFont)">
+        <LogicalName>bundle/Fonts/%(BundleFont.Filename)%(BundleFont.Extension)</LogicalName>
+      </EmbeddedResource>
+    </ItemGroup>
+    <Message Importance="high" Text="Bundled into the exe: @(BundleDll->'%(Filename)%(Extension)'), SQLite x86/x64, fonts" />
+  </Target>
+</Project>

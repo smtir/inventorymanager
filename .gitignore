@@ -1,0 +1,6 @@
+bin/
+obj/
+dist/
+.vs/
+# Microsoft redistributables downloaded by installer\build-setup.ps1
+installer/redist/
